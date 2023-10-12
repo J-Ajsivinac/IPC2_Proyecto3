@@ -2,7 +2,7 @@
 <!-- <p align="center">
     <a href="#"><img src="https://i.imgur.com/iLNDwx7.png"></a>
 </p> -->
-<p align="center">Programa de analisis de sentimientos de mensajes en redes sociales</p>
+<p align="center">Programa de analisis de sentimientos sobre mensajes en redes sociales</p>
 
 <div align="center">
 🙍‍♂️ Joab Israel Ajsivinac Ajsivinac 🆔 202200135
