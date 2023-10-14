@@ -15,9 +15,10 @@ def ping():
     return jsonify({"message": "API Proyecto 3"})
 
 
+messages = []
 r_1 = Read()
 r_1.load_initial_data(dict_conf)
-messages = []
+r_1.load_initial_msgs(messages)
 
 
 @app.route("/grabarConfiguracion", methods=["POST"])
@@ -39,6 +40,13 @@ def charge_msg():
     serial = [obj.__dict__ for obj in messages]
 
     return jsonify(serial)
+
+
+@app.route("/test")
+def test():
+    for msg in messages:
+        print(msg.date)
+    return {"message": "test"}
 
 
 if __name__ == "__main__":

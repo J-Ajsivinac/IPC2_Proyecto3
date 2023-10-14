@@ -14,13 +14,6 @@
         <palabra>decepcionado</palabra>
         <palabra>enojo</palabra>
     </sentimientos_negativos>
-    <rechazar_positivos>
-        <palabra>pesimo</palabra>
-    </rechazar_positivos>
-    <rechazar_negativos>
-        <palabra>bueno</palabra>
-        <palabra>excelente</palabra>
-        <palabra>cool</palabra>
-        <palabra>satisfecho</palabra>
-    </rechazar_negativos>
+    <rechazar_positivos/>
+    <rechazar_negativos/>
 </diccionario>

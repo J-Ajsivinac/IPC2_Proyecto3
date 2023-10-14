@@ -1,0 +1,25 @@
+<?xml version="1.0" ?>
+<datos>
+    <mensaje>
+        <tipo>positivo</tipo>
+        <fecha>25/01/2023</fecha>
+        <usuarios>
+            <usuario>bueno</usuario>
+            <usuario>estudiante02</usuario>
+        </usuarios>
+        <hashtags>
+            <hashtag>bienvenidaUSAC</hashtag>
+        </hashtags>
+    </mensaje>
+    <mensaje>
+        <tipo>positivo</tipo>
+        <fecha>26/01/2023</fecha>
+        <usuarios>
+            <usuario>estudiante01</usuario>
+            <usuario>estudiante02</usuario>
+        </usuarios>
+        <hashtags>
+            <hashtag>saludoUSAC</hashtag>
+        </hashtags>
+    </mensaje>
+</datos>
