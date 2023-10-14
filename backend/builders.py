@@ -9,10 +9,10 @@ class Message:
 class Config:
     def __init__(self):
         self.config = {
-            "sentimientos_positivos": [],
-            "sentimientos_negativos": [],
-            "rechazar_positivos": [],
-            "rechazar_negativos": [],
+            "sentimientos_positivos": set(),
+            "sentimientos_negativos": set(),
+            "rechazar_positivos": set(),
+            "rechazar_negativos": set(),
         }
 
     def verify_sent(self, current_sent, value):

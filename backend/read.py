@@ -35,11 +35,11 @@ class Read:
                 response = Config.verify_sent(first, text)
                 if response != first:
                     db_first = db_root.find(response)
-                conf[response].append(text)
-                print(element)
                 new_element = ET.Element("palabra")
                 new_element.text = text
-                db_first.append(new_element)
+                if not self.verify_dup(text, conf[response]):
+                    db_first.append(new_element)
+                conf[response].add(text)
         if second is not None:
             db_second = root.find(second)
             if db_second is not None:
@@ -51,10 +51,12 @@ class Read:
                     response = Config.verify_sent(second, text)
                     if response != second:
                         db_second = db_root.find(response)
-                    conf[response].append(text)
                     new_element = ET.Element("palabra")
                     new_element.text = text
                     db_second.append(new_element)
+                    if not self.verify_dup(text, conf[response]):
+                        db_first.append(new_element)
+                    conf[response].add(text)
 
         xmlstr = minidom.parseString(ET.tostring(db_root)).toprettyxml(indent="    ")
 
@@ -102,16 +104,16 @@ class Read:
         db_root = db_tree.getroot()
 
         for data in db_root.find("sentimientos_positivos"):
-            conf["sentimientos_positivos"].append(data.text)
+            conf["sentimientos_positivos"].add(data.text)
 
         for data in db_root.find("sentimientos_negativos"):
-            conf["sentimientos_negativos"].append(data.text)
+            conf["sentimientos_negativos"].add(data.text)
 
         for data in db_root.find("rechazar_positivos"):
-            conf["rechazar_positivos"].append(data.text)
+            conf["rechazar_positivos"].add(data.text)
 
         for data in db_root.find("rechazar_negativos"):
-            conf["rechazar_negativos"].append(data.text)
+            conf["rechazar_negativos"].add(data.text)
 
     def load_msg(self, content, conf: dict, list_msg: list):
         root = ET.fromstring(content)
@@ -129,9 +131,13 @@ class Read:
             search_date.append(re.search(patter_date, date_read).group(0))
             search_users.extend(re.findall(patter_users, msg_read))
             search_hastag.extend(re.findall(pattern_hastag, msg_read))
-            count_pos, count_neg, type_m = Controller.calc_sent(
-                Controller, msg_read, conf
-            )
+            _, _, type_m = Controller.calc_sent(Controller, msg_read, conf)
             list_msg.append(Message(search_date, search_users, search_hastag, type_m))
 
         # print(search_date, search_users, search_hastag)
+
+    def verify_dup(self, value, list_w: list):
+        if value in list_w:
+            return True
+
+        return False
