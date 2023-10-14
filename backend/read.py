@@ -2,7 +2,10 @@ import xml.etree.ElementTree as ET
 from xml.dom import minidom
 from builders import Config
 from unidecode import unidecode
+from controller import Controller
+from builders import Message
 import os
+import re
 
 
 class Read:
@@ -109,3 +112,26 @@ class Read:
 
         for data in db_root.find("rechazar_negativos"):
             conf["rechazar_negativos"].append(data.text)
+
+    def load_msg(self, content, conf: dict, list_msg: list):
+        root = ET.fromstring(content)
+        patter_date = r"\d{2}/\d{2}/\d{4}"
+        patter_users = r"@([A-Za-z0-9_]+)"
+        pattern_hastag = r"#([A-Za-z0-9_]+)#"
+
+        for msg in root.findall("MENSAJE"):
+            search_date = []
+            search_users = []
+            search_hastag = []
+            date_read = msg.findtext("FECHA")
+            msg_read = msg.findtext("TEXTO")
+
+            search_date.append(re.search(patter_date, date_read).group(0))
+            search_users.extend(re.findall(patter_users, msg_read))
+            search_hastag.extend(re.findall(pattern_hastag, msg_read))
+            count_pos, count_neg, type_m = Controller.calc_sent(
+                Controller, msg_read, conf
+            )
+            list_msg.append(Message(search_date, search_users, search_hastag, type_m))
+
+        # print(search_date, search_users, search_hastag)
