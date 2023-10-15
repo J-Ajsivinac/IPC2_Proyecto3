@@ -50,3 +50,35 @@ class Controller:
                 results.extend(value.users)
             dictionary[value.date] = results
         return dictionary
+
+    def filter_sentiments(self, start, end, list_data: list):
+        date_start = datetime.strptime(start, "%d/%m/%Y")
+        date_end = datetime.strptime(end, "%d/%m/%Y")
+        lbl_positive = "positivo"
+        lbl_negative = "negativo"
+
+        dictionary = {}
+        list_u = set(list_data)
+        for value in list_u:
+            results = {}
+            count_posit = 0
+            count_neg = 0
+            count_n = 0
+            b_date = value.date
+            b_date = datetime.strptime(b_date, "%d/%m/%Y")
+            for v in list_data:
+                current_date = v.date
+                current_date = datetime.strptime(current_date, "%d/%m/%Y")
+                if date_start <= current_date <= date_end:
+                    if b_date == current_date:
+                        if v.type == lbl_positive:
+                            count_posit += 1
+                        elif v.type == lbl_negative:
+                            count_neg += 1
+                        else:
+                            count_n += 1
+            results["positivo"] = count_posit
+            results["negativo"] = count_neg
+            results["neutro"] = count_n
+            dictionary[value.date] = results
+        return dictionary

@@ -187,9 +187,11 @@ class Read:
             for h in search_hastag:
                 hashtag = ET.SubElement(hashtags, "hashtag")
                 hashtag.text = f"{h}"
-            tipo.text = f"{type_m}"
+            # tipo.text = f"{type_m}"
 
-            list_msg.append(Message(search_date, search_users, search_hastag, type_m))
+            list_msg.append(
+                Message(search_date[0], search_users, search_hastag, type_m)
+            )
 
             if mensaje is None:
                 return

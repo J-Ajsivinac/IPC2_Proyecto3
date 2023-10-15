@@ -4,6 +4,7 @@ from read import Read
 from builders import *
 from controller import Controller
 import os
+import copy
 
 app = Flask(__name__)
 CORS(app)
@@ -38,7 +39,8 @@ def charge_msg():
     r_ = Read()
     r_.load_msg(xml_data, dict_conf, messages)
     # return {"mensaje": "XML procesado correctamente", "valores": messages}
-    serial = [obj.__dict__ for obj in messages]
+    response = copy.deepcopy(messages)
+    serial = [obj.__dict__ for obj in response]
 
     return jsonify(serial)
 
@@ -59,6 +61,15 @@ def get_users():
     end = request.json["end"]
     ctrl = Controller()
     response = ctrl.filter_users(start, end, messages)
+    return jsonify(response)
+
+
+@app.route("/devolverSentimientos", methods=["POST"])
+def get_sentiments():
+    start = request.json["start"]
+    end = request.json["end"]
+    ctrl = Controller()
+    response = ctrl.filter_sentiments(start, end, messages)
     return jsonify(response)
 
 
