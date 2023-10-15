@@ -1,4 +1,5 @@
 import re
+from datetime import datetime
 
 
 class Controller:
@@ -22,3 +23,30 @@ class Controller:
         else:
             type_m = "neutro"
         return count_pos, count_neg, type_m
+
+    def filter_hashtag(self, start, end, list_data: list):
+        date_start = datetime.strptime(start, "%d/%m/%Y")
+        date_end = datetime.strptime(end, "%d/%m/%Y")
+        dictionary = {}
+        for value in list_data:
+            results = []
+            current_date = value.date
+            current_date = datetime.strptime(current_date, "%d/%m/%Y")
+            if date_start <= current_date <= date_end:
+                results.extend(value.hash)
+            dictionary[value.date] = results
+        return dictionary
+
+    def filter_users(self, start, end, list_data: list):
+        date_start = datetime.strptime(start, "%d/%m/%Y")
+        date_end = datetime.strptime(end, "%d/%m/%Y")
+
+        dictionary = {}
+        for value in list_data:
+            results = []
+            current_date = value.date
+            current_date = datetime.strptime(current_date, "%d/%m/%Y")
+            if date_start <= current_date <= date_end:
+                results.extend(value.users)
+            dictionary[value.date] = results
+        return dictionary

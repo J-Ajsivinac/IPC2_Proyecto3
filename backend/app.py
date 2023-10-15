@@ -2,6 +2,7 @@ from flask import Flask, jsonify, request
 from flask_cors import CORS
 from read import Read
 from builders import *
+from controller import Controller
 import os
 
 app = Flask(__name__)
@@ -42,10 +43,29 @@ def charge_msg():
     return jsonify(serial)
 
 
+@app.route("/devolverHastags", methods=["POST"])
+def get_hastags():
+    start = request.json["start"]
+    end = request.json["end"]
+    ctrl = Controller()
+    response = ctrl.filter_hashtag(start, end, messages)
+    # print(response)
+    return jsonify(response)
+
+
+@app.route("/devolverMenciones", methods=["POST"])
+def get_users():
+    start = request.json["start"]
+    end = request.json["end"]
+    ctrl = Controller()
+    response = ctrl.filter_users(start, end, messages)
+    return jsonify(response)
+
+
 @app.route("/test")
 def test():
     for msg in messages:
-        print(msg.date)
+        print(msg.users)
     return {"message": "test"}
 
 
