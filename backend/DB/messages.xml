@@ -27,7 +27,7 @@
         <fecha>25/01/2023</fecha>
         <usuarios>
             <usuario>bueno</usuario>
-            <usuario>estudiante02</usuario>
+            <usuario>estudiante03</usuario>
         </usuarios>
         <hashtags>
             <hashtag>bienvenidaUSAC</hashtag>
@@ -37,7 +37,7 @@
         <tipo>positivo</tipo>
         <fecha>25/01/2023</fecha>
         <usuarios>
-            <usuario>estudiante01</usuario>
+            <usuario>estudiante25</usuario>
             <usuario>estudiante02</usuario>
         </usuarios>
         <hashtags>
@@ -49,10 +49,10 @@
         <fecha>25/01/2023</fecha>
         <usuarios>
             <usuario>bueno</usuario>
-            <usuario>estudiante02</usuario>
+            <usuario>estudiante222</usuario>
         </usuarios>
         <hashtags>
-            <hashtag>bienvenidaUSAC</hashtag>
+            <hashtag>bienvenidaUSAC33</hashtag>
         </hashtags>
     </mensaje>
     <mensaje>
@@ -63,7 +63,7 @@
             <usuario>estudiante02</usuario>
         </usuarios>
         <hashtags>
-            <hashtag>bienvenidaUSAC</hashtag>
+            <hashtag>bienvenidaUSAC123</hashtag>
         </hashtags>
     </mensaje>
     <mensaje>
@@ -74,7 +74,7 @@
             <usuario>estudiante02</usuario>
         </usuarios>
         <hashtags>
-            <hashtag>bienvenidaUSAC</hashtag>
+            <hashtag>bienvenidaUSA44C</hashtag>
         </hashtags>
     </mensaje>
 </datos>

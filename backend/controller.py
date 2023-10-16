@@ -1,5 +1,7 @@
 import re
 from datetime import datetime
+from collections import Counter
+import copy
 
 
 class Controller:
@@ -28,27 +30,72 @@ class Controller:
         date_start = datetime.strptime(start, "%d/%m/%Y")
         date_end = datetime.strptime(end, "%d/%m/%Y")
         dictionary = {}
+        # list_u = set(list_data)
+        hashtags_dates = {}
+        # hashtags_dates.clear()
+        # hashtags_dates.popitem()
         for value in list_data:
-            results = []
-            current_date = value.date
+            date = value.date
+            hashtags = value.hash
+
+            if date in hashtags_dates:
+                # Agregar los hashtags del mensaje a la lista existente
+                hashtags_copy = list(hashtags_dates[date])
+                hashtags_copy.extend(hashtags)
+                hashtags_dates[date] = hashtags_copy
+            else:
+                # Si la fecha no está en el diccionario, crear una nueva lista de hashtags
+                hashtags_dates[date] = hashtags
+
+        # list_u = copy.deepcopy(list_data)
+        list_u = copy.deepcopy(self.only_dates(list_data))
+
+        for v in list_u:
+            current_date = v.date
+            count = None
             current_date = datetime.strptime(current_date, "%d/%m/%Y")
             if date_start <= current_date <= date_end:
-                results.extend(value.hash)
-            dictionary[value.date] = results
+                hash_dates = hashtags_dates[v.date]
+                count = Counter(hash_dates)
+            if count is not None:
+                dictionary[v.date] = count
+
         return dictionary
 
     def filter_users(self, start, end, list_data: list):
         date_start = datetime.strptime(start, "%d/%m/%Y")
         date_end = datetime.strptime(end, "%d/%m/%Y")
-
         dictionary = {}
+        # list_u = set(list_data)
+        users_date = {}
+        # users_date.clear()
+        # users_date.popitem()
         for value in list_data:
-            results = []
-            current_date = value.date
+            date = value.date
+            user = value.users
+
+            if date in users_date:
+                # Agregar los user del mensaje a la lista existente
+                hashtags_copy = list(users_date[date])
+                hashtags_copy.extend(user)
+                users_date[date] = hashtags_copy
+            else:
+                # Si la fecha no está en el diccionario, crear una nueva lista de hashtags
+                users_date[date] = user
+
+        # list_u = copy.deepcopy(list_data)
+        list_u = copy.deepcopy(self.only_dates(list_data))
+
+        for v in list_u:
+            current_date = v.date
+            count = None
             current_date = datetime.strptime(current_date, "%d/%m/%Y")
             if date_start <= current_date <= date_end:
-                results.extend(value.users)
-            dictionary[value.date] = results
+                user_dates = users_date[v.date]
+                count = Counter(user_dates)
+            if count is not None:
+                dictionary[v.date] = count
+
         return dictionary
 
     def filter_sentiments(self, start, end, list_data: list):
@@ -58,7 +105,7 @@ class Controller:
         lbl_negative = "negativo"
 
         dictionary = {}
-        list_u = set(list_data)
+        list_u = copy.deepcopy(self.only_dates(list_data))
         for value in list_u:
             results = {}
             count_posit = 0
@@ -82,3 +129,13 @@ class Controller:
             results["neutro"] = count_n
             dictionary[value.date] = results
         return dictionary
+
+    def only_dates(self, list_data: list):
+        lista_u = []
+        dates_u = set()
+        for msg in list_data:
+            date = msg.date
+            if date not in dates_u:
+                dates_u.add(msg)
+                lista_u.append(msg)
+        return lista_u
