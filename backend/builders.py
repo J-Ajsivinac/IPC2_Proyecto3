@@ -15,6 +15,17 @@ class Config:
             "rechazar_negativos": set(),
         }
 
+    def reset(self):
+        self.config.clear()
+        self.config = {}
+        self.config = {
+            "sentimientos_positivos": set(),
+            "sentimientos_negativos": set(),
+            "rechazar_positivos": set(),
+            "rechazar_negativos": set(),
+        }
+        return self.config
+
     def verify_sent(self, current_sent, value):
         search_in = (
             "sentimientos_negativos"

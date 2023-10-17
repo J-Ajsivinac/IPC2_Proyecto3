@@ -209,3 +209,15 @@ class Read:
             return True
 
         return False
+
+    def restet_db(self):
+        _root_file = os.path.dirname(os.path.abspath(__file__))
+        # add_data = ET.fromstring(data)
+        db_config = os.path.join(_root_file, "DB", "config.xml").replace("\\", "\\\\")
+        db_messages = os.path.join(_root_file, "DB", "messages.xml").replace(
+            "\\", "\\\\"
+        )
+        with open(db_config, "w", encoding="utf-8") as file:
+            file.write("")
+        with open(db_messages, "w", encoding="utf-8") as file:
+            file.write("")

@@ -6,10 +6,28 @@ from controller import Controller
 import os
 import copy
 
+
+class MainBackend:
+    def __init__(self):
+        self.build = Config()
+        self.dict_conf = self.build.config
+        self.messages = []
+        self.load_initial_data()
+
+    def reset_data(self):
+        self.dict_conf = self.build.reset()
+        self.messages.clear()
+
+    def load_initial_data(self):
+        r_1 = Read()
+        r_1.load_initial_data(self.dict_conf)
+        r_1.load_initial_msgs(self.messages)
+
+
+origin_data = MainBackend()
+
 app = Flask(__name__)
 CORS(app)
-build = Config()
-dict_conf = build.config
 
 
 @app.route("/")
@@ -17,16 +35,12 @@ def ping():
     return jsonify({"message": "API Proyecto 3"})
 
 
-messages = []
-r_1 = Read()
-r_1.load_initial_data(dict_conf)
-r_1.load_initial_msgs(messages)
-
-
 @app.route("/grabarConfiguracion", methods=["POST"])
 def charge():
     xml_data = request.data
     r_ = Read()
+    dict_conf = origin_data.dict_conf
+    build = origin_data.build
     r_.read_config(xml_data, dict_conf, build)
     print("Valor actualizado de clave1:", dict_conf["sentimientos_positivos"])
     print("Valor actualizado de clave2:", dict_conf["sentimientos_negativos"])
@@ -36,6 +50,8 @@ def charge():
 @app.route("/grabarMensajes", methods=["POST"])
 def charge_msg():
     xml_data = request.data
+    dict_conf = origin_data.dict_conf
+    messages = origin_data.messages
     r_ = Read()
     r_.load_msg(xml_data, dict_conf, messages)
     # return {"mensaje": "XML procesado correctamente", "valores": messages}
@@ -49,6 +65,7 @@ def charge_msg():
 def get_hastags():
     start = request.json["start"]
     end = request.json["end"]
+    messages = origin_data.messages
     ctrl = Controller()
     response = ctrl.filter_hashtag(start, end, messages)
     # print(response)
@@ -59,6 +76,7 @@ def get_hastags():
 def get_users():
     start = request.json["start"]
     end = request.json["end"]
+    messages = origin_data.messages
     ctrl = Controller()
     response = ctrl.filter_users(start, end, messages)
     return jsonify(response)
@@ -68,14 +86,23 @@ def get_users():
 def get_sentiments():
     start = request.json["start"]
     end = request.json["end"]
+    messages = origin_data.messages
     ctrl = Controller()
     response = ctrl.filter_sentiments(start, end, messages)
     return jsonify(response)
 
 
+@app.route("/limpiarDatos")
+def restet():
+    origin_data.reset_data()
+    r_ = Read()
+    r_.restet_db()
+    return {"mensaje": "Sistema inicializado"}
+
+
 @app.route("/test")
 def test():
-    for msg in messages:
+    for msg in origin_data.messages:
         print(msg.users)
     return {"message": "test"}
 
