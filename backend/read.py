@@ -173,7 +173,7 @@ class Read:
             search_users.extend(re.findall(patter_users, msg_read))
             search_hastag.extend(re.findall(pattern_hastag, msg_read))
             msg_read = msg_read.lower()
-            _, _, type_m = Controller.calc_sent(Controller, msg_read, conf)
+            type_m = Controller.calc_sent(Controller, msg_read, conf)
 
             tipo = ET.SubElement(mensaje, "tipo")
             tipo.text = f"{type_m}"

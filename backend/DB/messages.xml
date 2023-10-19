@@ -1,14 +1,14 @@
 <?xml version="1.0" ?>
 <datos>
     <mensaje>
-        <tipo>neutro</tipo>
+        <tipo>negativo</tipo>
         <fecha>25/01/2023</fecha>
         <usuarios>
             <usuario>bueno</usuario>
             <usuario>estudiante02</usuario>
         </usuarios>
         <hashtags>
-            <hashtag>bienvenidaUSAC</hashtag>
+            <hashtag>XD</hashtag>
         </hashtags>
     </mensaje>
 </datos>

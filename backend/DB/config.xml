@@ -1,10 +1,6 @@
 <?xml version="1.0" ?>
 <diccionario>
     <sentimientos_positivos>
-        <palabra>bueno</palabra>
-        <palabra>excelente</palabra>
-        <palabra>cool</palabra>
-        <palabra>satisfecho</palabra>
         <palabra>god</palabra>
     </sentimientos_positivos>
     <sentimientos_negativos>

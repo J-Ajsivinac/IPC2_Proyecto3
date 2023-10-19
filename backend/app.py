@@ -6,25 +6,8 @@ from controller import Controller
 import os
 import copy
 
-
-class MainBackend:
-    def __init__(self):
-        self.build = Config()
-        self.dict_conf = self.build.config
-        self.messages = []
-        self.load_initial_data()
-
-    def reset_data(self):
-        self.dict_conf = self.build.reset()
-        self.messages.clear()
-
-    def load_initial_data(self):
-        r_1 = Read()
-        r_1.load_initial_data(self.dict_conf)
-        r_1.load_initial_msgs(self.messages)
-
-
-origin_data = MainBackend()
+read = Read()
+origin_data = MainBackend(read)
 
 app = Flask(__name__)
 CORS(app)
@@ -38,37 +21,22 @@ def ping():
 @app.route("/grabarConfiguracion", methods=["POST"])
 def charge():
     xml_data = request.data
-    r_ = Read()
-    dict_conf = origin_data.dict_conf
-    build = origin_data.build
-    r_.read_config(xml_data, dict_conf, build)
-    print("Valor actualizado de clave1:", dict_conf["sentimientos_positivos"])
-    print("Valor actualizado de clave2:", dict_conf["sentimientos_negativos"])
+    origin_data.load_config(xml_data)
     return {"mensaje": "XML procesado correctamente"}
 
 
 @app.route("/grabarMensajes", methods=["POST"])
 def charge_msg():
     xml_data = request.data
-    dict_conf = origin_data.dict_conf
-    messages = origin_data.messages
-    r_ = Read()
-    r_.load_msg(xml_data, dict_conf, messages)
-    # return {"mensaje": "XML procesado correctamente", "valores": messages}
-    response = copy.deepcopy(messages)
-    serial = [obj.__dict__ for obj in response]
-
-    return jsonify(serial)
+    origin_data.load_messages(xml_data)
+    return {"message": "Archivo grabado exitosamente"}
 
 
 @app.route("/devolverHastags", methods=["POST"])
 def get_hastags():
     start = request.json["start"]
     end = request.json["end"]
-    messages = origin_data.messages
-    ctrl = Controller()
-    response = ctrl.filter_hashtag(start, end, messages)
-    # print(response)
+    response = origin_data.return_hashtags(start, end)
     return jsonify(response)
 
 
@@ -76,9 +44,7 @@ def get_hastags():
 def get_users():
     start = request.json["start"]
     end = request.json["end"]
-    messages = origin_data.messages
-    ctrl = Controller()
-    response = ctrl.filter_users(start, end, messages)
+    response = origin_data.return_users(start, end)
     return jsonify(response)
 
 
@@ -86,17 +52,37 @@ def get_users():
 def get_sentiments():
     start = request.json["start"]
     end = request.json["end"]
-    messages = origin_data.messages
-    ctrl = Controller()
-    response = ctrl.filter_sentiments(start, end, messages)
+    response = origin_data.return_sentiments(start, end)
+    return jsonify(response)
+
+
+@app.route("/devolverGraficaSentimientos", methods=["POST"])
+def get_graph_sentiments():
+    start = request.json["start"]
+    end = request.json["end"]
+    response = origin_data.return_sentiments(start, end)
+    return jsonify(response)
+
+
+@app.route("/devolverGraficaHashtags", methods=["POST"])
+def get_graph_hash():
+    start = request.json["start"]
+    end = request.json["end"]
+    response = origin_data.return_graph_hash(start, end)
+    return jsonify(response)
+
+
+@app.route("/devolverGraficaUsuarios", methods=["POST"])
+def get_graph_users():
+    start = request.json["start"]
+    end = request.json["end"]
+    response = origin_data.return_graph_u(start, end)
     return jsonify(response)
 
 
 @app.route("/limpiarDatos")
 def restet():
     origin_data.reset_data()
-    r_ = Read()
-    r_.restet_db()
     return {"mensaje": "Sistema inicializado"}
 
 
