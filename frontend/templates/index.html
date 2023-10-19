@@ -7,6 +7,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{% static 'css/base.css' %}">
     <script src="https://kit.fontawesome.com/9c568c1e45.js" crossorigin="anonymous"></script>
+    <script src="
+    https://cdn.jsdelivr.net/npm/sweetalert2@11.7.32/dist/sweetalert2.all.min.js
+    "></script>
+    <link href="
+    https://cdn.jsdelivr.net/npm/sweetalert2@11.7.32/dist/sweetalert2.min.css
+    " rel="stylesheet">
     <title>Home</title>
 </head>
 
@@ -14,7 +20,7 @@
     <div class="sidebar">
         <div class="logo_content">
             <div class="logo">
-                <i class="fab fa-confluence"></i>
+                <i class="fa-solid fa-hashtag"></i>
                 <div class="logo_name">Proyecto 3</div>
             </div>
             <i class="fas fa-bars" id="btn"></i>
@@ -47,11 +53,62 @@
         </ul>
     </div>
 
-    <div class="home_content">
+    <main class="home_content">
         <div class="text">Home Content</div>
-    </div>
+        <section class="content-init">
+            <div class="title-content">Elija una Opción</div>
+            <div class="card-init">
+                <img src="" alt="">
+                <div class="card-title">Cargar Configuración</div>
+                {% if exito is not None %}
+
+                </script>
+                {% if exito %}
+                <script>
+                    Swal.fire(
+                        'Archivos correctos',
+                        'That thing is still around?',
+                        'succes'
+                    )
+                </script>
+                {% else %}
+                <script>
+                    Swal.fire(
+                        'Error',
+                        'That thing is still around?',
+                        'error'
+                    )
+                </script>
+                {% endif %}
+                <script>
+                    var exito = "{{ exito }}";
+                    if (exito === 'True' || exito === 'False') {
+                        var newurl = window.location.protocol + "//" + window.location.host + window.location.pathname;
+                        window.history.pushState({ path: newurl }, '', newurl);
+                    }
+                </script>
+                {% endif %}
+                <form action="/cargar-archivo/" method="post" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <input type="file" name="archivo" accept=".xml">
+                    <button type="submit">Cargar archivo</button>
+                </form>
+            </div>
+            <div class="card-init">
+                <img src="" alt="">
+                <div class="card-title">Cargar Mensages</div>
+                <input type="button" value="Subir">
+            </div>
+            <div class="card-init">
+                <img src="" alt="">
+                <div class="card-title">Inicializar</div>
+                <input type="button" value="Subir">
+            </div>
+        </section>
+    </main>
     <script src="https://kit.fontawesome.com/e73cd8025f.js" crossorigin="anonymous"></script>
     <script src="{% static 'js/side_menu.js' %}"></script>
+
 </body>
 
 </html>
