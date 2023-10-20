@@ -1,144 +1,86 @@
+{% extends "base.html" %}
 {% load static %}
-<!DOCTYPE html>
-<html lang="en">
+{% block title %}Inicio{% endblock %}
+{% block content %}
+<div class="content">
+    <div class="text">Inicio</div>
+    <section class="content-init">
+        <div class="title-content">Elija una Opción</div>
+        <div class="card-init">
+            <!-- <img src="" alt=""> -->
+            <div class="card-title">Cargar Configuración</div>
+            {% if exito is not None %}
+            {% if exito %}
+            <script>
+                Swal.fire(
+                    'Archivos correctos',
+                    'That thing is still around?',
+                    'succes'
+                )
+            </script>
+            {% else %}
+            <script>
+                Swal.fire(
+                    'Error',
+                    'That thing is still around?',
+                    'error'
+                )
+            </script>
+            {% endif %}
+            <script>
+                if (window.history.replaceState) {
+                    window.history.replaceState({}, document.title, window.location.pathname);
+                }
+            </script>
+            {% endif %}
+            <div class="form">
+                <form method="post" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <div class="content-input">
+                        <input type="file" id="file" name="config" accept=".xml" required>
+                        <label for="file" class="custom-file-label">
+                            <i class="fa-solid fa-file"></i> Seleccionar archivo
+                        </label>
+                    </div>
+                    <div class="content-btn-send">
+                        <button type="submit"><i class="fa-solid fa-arrow-up-from-bracket"></i>Enviar
+                            archivo</button>
+                    </div>
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="{% static 'css/base.css' %}">
-    <script src="https://kit.fontawesome.com/9c568c1e45.js" crossorigin="anonymous"></script>
-    <script src="
-    https://cdn.jsdelivr.net/npm/sweetalert2@11.7.32/dist/sweetalert2.all.min.js
-    "></script>
-    <link href="
-    https://cdn.jsdelivr.net/npm/sweetalert2@11.7.32/dist/sweetalert2.min.css
-    " rel="stylesheet">
-    <title>Home</title>
-</head>
-
-<body>
-    <div class="sidebar">
-        <div class="logo_content">
-            <div class="logo">
-                <i class="fa-solid fa-hashtag"></i>
-                <div class="logo_name">Proyecto 3</div>
+                </form>
             </div>
-            <i class="fas fa-bars" id="btn"></i>
         </div>
-        <ul class="nav_list">
-            <li>
-                <a href="#">
-                    <i class="fa-solid fa-house"></i>
-                    <span class="links_name">Inicio</span>
-                </a>
-                <span class="tooltip">Inicio</span>
-            </li>
-
-            <li>
-                <a href="#">
-                    <i class="fa-solid fa-chart-simple"></i>
-                    <span class="links_name">Peticiones</span>
-                </a>
-                <span class="tooltip">Peticiones</span>
-            </li>
-
-            <li>
-                <a href="#">
-                    <i class="fa-solid fa-circle-info"></i>
-                    <span class="links_name">Ayuda</span>
-                </a>
-                <span class="tooltip">Ayuda</span>
-            </li>
-
-        </ul>
-    </div>
-
-    <main class="home_content">
-        <div class="content">
-            <div class="text">Inicio</div>
-            <section class="content-init">
-                <div class="title-content">Elija una Opción</div>
-                <div class="card-init">
-                    <!-- <img src="" alt=""> -->
-                    <div class="card-title">Cargar Configuración</div>
-                    {% if exito is not None %}
-                    {% if exito %}
-                    <script>
-                        Swal.fire(
-                            'Archivos correctos',
-                            'That thing is still around?',
-                            'succes'
-                        )
-                    </script>
-                    {% else %}
-                    <script>
-                        Swal.fire(
-                            'Error',
-                            'That thing is still around?',
-                            'error'
-                        )
-                    </script>
-                    {% endif %}
-                    <script>
-                        if (window.history.replaceState) {
-                            window.history.replaceState({}, document.title, window.location.pathname);
-                        }
-                    </script>
-                    {% endif %}
-                    <div class="form">
-                        <form method="post" enctype="multipart/form-data">
-                            {% csrf_token %}
-                            <div class="content-input">
-                                <input type="file" id="file" name="config" accept=".xml" required>
-                                <label for="file" class="custom-file-label">
-                                    <i class="fa-solid fa-file"></i> Seleccionar archivo
-                                </label>
-                            </div>
-                            <div class="content-btn-send">
-                                <button type="submit"><i class="fa-solid fa-arrow-up-from-bracket"></i>Enviar
-                                    archivo</button>
-                            </div>
-
-                        </form>
+        <div class="card-init">
+            <!-- <img src="" alt=""> -->
+            <div class="card-title">Cargar Mensajes</div>
+            <div class="form">
+                <form action="" method="post" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <div class="content-input">
+                        <input type="file" id="file_m" name="msgs" accept=".xml" required>
+                        <label for="file_m" class="custom-file-label">
+                            <i class="fa-solid fa-file"></i> Seleccionar archivo
+                        </label>
                     </div>
-                </div>
-                <div class="card-init">
-                    <!-- <img src="" alt=""> -->
-                    <div class="card-title">Cargar Mensajes</div>
-                    <div class="form">
-                        <form action="" method="post" enctype="multipart/form-data">
-                            {% csrf_token %}
-                            <div class="content-input">
-                                <input type="file" id="file_m" name="msgs" accept=".xml" required>
-                                <label for="file_m" class="custom-file-label">
-                                    <i class="fa-solid fa-file"></i> Seleccionar archivo
-                                </label>
-                            </div>
-                            <div class="content-btn-send">
-                                <button type="submit"><i class="fa-solid fa-arrow-up-from-bracket"></i>Enviar
-                                    archivo</button>
-                            </div>
+                    <div class="content-btn-send">
+                        <button type="submit"><i class="fa-solid fa-arrow-up-from-bracket"></i>Enviar
+                            archivo</button>
+                    </div>
 
-                        </form>
-                    </div>
-                </div>
-                <div class="card-init-restart">
-                    <img src="" alt="">
-                    <div class="card-title">Inicializar</div>
-                    <div class="content-btn-restart">
-                        <form action="" method="get" class="restart" enctype="multipart/form-data">
-                            {% csrf_token %}
-                            <button type="submit" name="reset"><i class="fa-solid fa-arrow-rotate-right"></i>Inicializar
-                                Sistema</button>
-                        </form>
-                    </div>
-                </div>
-            </section>
+                </form>
+            </div>
         </div>
-    </main>
-    <script src="https://kit.fontawesome.com/e73cd8025f.js" crossorigin="anonymous"></script>
-    <script src="{% static 'js/side_menu.js' %}"></script>
-
-</body>
-
-</html>
+        <div class="card-init-restart">
+            <img src="" alt="">
+            <div class="card-title">Inicializar</div>
+            <div class="content-btn-restart">
+                <form action="" method="get" class="restart" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <button type="submit" name="reset"><i class="fa-solid fa-arrow-rotate-right"></i>Inicializar
+                        Sistema</button>
+                </form>
+            </div>
+        </div>
+    </section>
+</div>
+{% endblock %}
