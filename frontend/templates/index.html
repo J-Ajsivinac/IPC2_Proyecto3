@@ -82,15 +82,13 @@
                     </script>
                     {% endif %}
                     <script>
-                        var exito = "{{ exito }}";
-                        if (exito === 'True' || exito === 'False') {
-                            var newurl = window.location.protocol + "//" + window.location.host + window.location.pathname;
-                            window.history.pushState({ path: newurl }, '', newurl);
+                        if (window.history.replaceState) {
+                            window.history.replaceState({}, document.title, window.location.pathname);
                         }
                     </script>
                     {% endif %}
                     <div class="form">
-                        <form action="/cargar-archivo/" method="post" enctype="multipart/form-data">
+                        <form method="post" enctype="multipart/form-data">
                             {% csrf_token %}
                             <div class="content-input">
                                 <input type="file" id="file" name="archivo" accept=".xml">
@@ -129,13 +127,6 @@
                         )
                     </script>
                     {% endif %}
-                    <script>
-                        var exito = "{{ exito }}";
-                        if (exito === 'True' || exito === 'False') {
-                            var newurl = window.location.protocol + "//" + window.location.host + window.location.pathname;
-                            window.history.pushState({ path: newurl }, '', newurl);
-                        }
-                    </script>
                     {% endif %}
                     <div class="form">
                         <form action="" method="post" enctype="multipart/form-data">

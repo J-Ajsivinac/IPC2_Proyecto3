@@ -2,6 +2,10 @@
 <diccionario>
     <sentimientos_positivos>
         <palabra>god</palabra>
+        <palabra>bueno</palabra>
+        <palabra>excelente</palabra>
+        <palabra>cool</palabra>
+        <palabra>satisfecho</palabra>
     </sentimientos_positivos>
     <sentimientos_negativos>
         <palabra>malo</palabra>
