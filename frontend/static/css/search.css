@@ -1,0 +1,81 @@
+.content-search {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 88vh;
+    /* background-color: darkgrey; */
+    row-gap: 10px;
+    padding: 0px 12px 6px 12px;
+    color: white;
+}
+
+.content-results {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+    /* background-color: aqua; */
+}
+
+.content-results .option-group {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    column-gap: 10px;
+    /* width: 20%; */
+    /* background-color: aqua; */
+    padding: 5px 0px 5px 12px;
+}
+
+.content-results .btn-search {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+}
+
+.content-return {
+    width: 100%;
+    padding: 0px 12px 5px 12px;
+    /* background-color: aquamarine; */
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    row-gap: 10px;
+}
+
+.content-return .content-list {
+    /* height: 40%; */
+    /* background-color: black; */
+    padding: 5px 20px 5px 20px;
+    width: 60%;
+}
+
+.content-list section {
+    display: flex;
+    flex-direction: column;
+    row-gap: 10px;
+
+}
+
+.card-results {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    justify-content: space-between;
+    padding: 7px;
+    /* background-color: bisque; */
+}
+
+.content-right {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    column-gap: 10px;
+}
+
+.content-return .content-graph {
+    /* height: 40%; */
+    /* background-color: black; */
+    padding: 5px 20px 5px 20px;
+}

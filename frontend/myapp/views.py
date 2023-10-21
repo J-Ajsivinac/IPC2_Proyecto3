@@ -56,3 +56,7 @@ def index(request):
     exito = request.GET.get("exito", None)
     exito = exito == "True" if exito is not None else None
     return render(request, "index.html", {"exito": exito})
+
+
+def search(request):
+    return render(request, "search.html")

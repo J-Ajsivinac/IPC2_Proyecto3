@@ -1,0 +1,65 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}Busqueda{% endblock %}
+{% block s_add %}
+<link rel="stylesheet" href="{% static 'css/search.css' %}">
+{% endblock %}
+{% block content %}
+<div class="content">
+    <div class="text">Busqueda</div>
+    <div class="content-search">
+        <form action="">
+            <div class="content-results">
+                <div class="option-group">
+                    <i class="fa-solid fa-filter"></i>
+                    <div class="options">
+                        <p>Buscar Por</p>
+                        <select name="select">
+                            <option value="value1">Value 1</option>
+                            <option value="value2" selected>Value 2</option>
+                            <option value="value3">Value 3</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="option-group">
+                    <i class="fa-solid fa-calendar"></i>
+                    <div class="options">
+                        <p>Elija el rango</p>
+                        <input type="date" name="" id="">
+                    </div>
+                </div>
+                <div class="btn-search">
+                    <button type="submit">Buscar</button>
+                </div>
+            </div>
+        </form>
+        <div class="content-return">
+            <div class="content-list">
+                <h3 class="title-list">Resultados</h3>
+                <section>
+                    <div class="card-results">
+                        <div class="content-right">
+                            <i class="fa-solid fa-square-poll-vertical"></i>
+                            <span class="name-result">Usuario 1</span>
+                        </div>
+                        <span class="number-result">10</span>
+                    </div>
+                    <div class="card-results">
+                        <div class="content-right">
+                            <i class="fa-solid fa-square-poll-vertical"></i>
+                            <span class="name-result">Usuario 1</span>
+                        </div>
+                        <span class="number-result">10</span>
+                    </div>
+                </section>
+            </div>
+            <div class="content-graph">
+                <h3>Gráfica</h3>
+                <section>
+                    <span>Grafica</span>
+                </section>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
