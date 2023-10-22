@@ -3,29 +3,40 @@
 {% block title %}Busqueda{% endblock %}
 {% block s_add %}
 <link rel="stylesheet" href="{% static 'css/search.css' %}">
+<link href="{% static 'calendar/vanilla-calendar.min.css' %}" rel="stylesheet">
+<link href="{% static 'calendar/themes/light.min.css' %}" rel="stylesheet">
+<link href="{% static 'calendar/themes/dark.min.css' %}" rel="stylesheet">
+<script src="{% static 'calendar/vanilla-calendar.min.js' %}" rel="stylesheet" defer></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lato-font/3.0.0/css/lato-font.min.css">
 {% endblock %}
 {% block content %}
 <div class="content">
     <div class="text">Busqueda</div>
     <div class="content-search">
-        <form action="">
+        <form action="" method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
             <div class="content-results">
                 <div class="option-group">
                     <i class="fa-solid fa-filter"></i>
                     <div class="options">
                         <p>Buscar Por</p>
-                        <select name="select">
-                            <option value="value1">Value 1</option>
-                            <option value="value2" selected>Value 2</option>
-                            <option value="value3">Value 3</option>
+                        <select name="searchBy">
+                            <option value="hastags" selected>Hastags</option>
+                            <option value="mesiones">Mensiones</option>
+                            <option value="sentimientos">Sentimientos</option>
                         </select>
                     </div>
                 </div>
                 <div class="option-group">
-                    <i class="fa-solid fa-calendar"></i>
-                    <div class="options">
-                        <p>Elija el rango</p>
-                        <input type="date" name="" id="">
+                    <div class="content-date-ranget">
+                        <i class="fa-solid fa-calendar"></i>
+                        <div class="options">
+                            <p>Rango de Fechas</p>
+                            <input name="rangeDate" id="calendar-input" type="text" placeholder="Choose date" readonly
+                                required />
+                            <div id="calendar-input-div"></div>
+                            <div id="calendar"></div>
+                        </div>
                     </div>
                 </div>
                 <div class="btn-search">
@@ -37,19 +48,28 @@
             <div class="content-list">
                 <h3 class="title-list">Resultados</h3>
                 <section>
+                    <span class="title-date">21/03/2023</span>
                     <div class="card-results">
                         <div class="content-right">
-                            <i class="fa-solid fa-square-poll-vertical"></i>
+                            <i class="fa-regular fa-message"></i>
                             <span class="name-result">Usuario 1</span>
                         </div>
-                        <span class="number-result">10</span>
+                        <span class="number-result">10 mensajes</span>
                     </div>
                     <div class="card-results">
                         <div class="content-right">
-                            <i class="fa-solid fa-square-poll-vertical"></i>
+                            <i class="fa-regular fa-message"></i>
                             <span class="name-result">Usuario 1</span>
                         </div>
-                        <span class="number-result">10</span>
+                        <span class="number-result">10 mensajes</span>
+                    </div>
+                    <span class="title-date">22/03/2023</span>
+                    <div class="card-results">
+                        <div class="content-right">
+                            <i class="fa-regular fa-message"></i>
+                            <span class="name-result">Usuario 1</span>
+                        </div>
+                        <span class="number-result">10 mensajes</span>
                     </div>
                 </section>
             </div>
@@ -62,4 +82,10 @@
         </div>
     </div>
 </div>
+
+{% endblock %}
+{% block scripts %}
+<script src="{% static 'calendar/theme.js' %}"></script>
+<script src="{% static 'calendar/calendar-from.js' %}"></script>
+<script src="{% static 'calendar/calendar-to.js' %}"></script>
 {% endblock %}

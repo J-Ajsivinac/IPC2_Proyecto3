@@ -1,8 +1,9 @@
 from django.shortcuts import render, redirect
-from django.http import HttpResponse
+from django.http import HttpResponse, JsonResponse
 from django.views.decorators.http import require_POST
 from django.urls import reverse
 import requests
+import json
 
 
 # Create your views here.
@@ -59,4 +60,35 @@ def index(request):
 
 
 def search(request):
-    return render(request, "search.html")
+    if request.method == "GET":
+        return render(request, "search.html")
+    elif request.method == "POST":
+        response = None
+        if "searchBy" in request.POST and "rangeDate" in request.POST:
+            searchBy = request.POST["searchBy"]
+
+            rangeDate = request.POST["rangeDate"]
+            rangeDate = rangeDate.split("-")
+            if len(rangeDate) != 2:
+                print(rangeDate, "error")
+                return redirect(reverse("search"))
+            temp = "14/01/2023"
+            start = rangeDate[0].strip()
+            end = rangeDate[1].strip()
+            print(end, f" {temp} ", start)
+            api_url = "http://127.0.0.1:3020/devolverHastags"
+            data = {"start": start, "end": end}
+            data_json = json.dumps(data)
+            headers = {"Content-Type": "application/json"}
+            response = requests.post(
+                api_url, headers=headers, data=data_json, timeout=1000
+            )
+            if response.status_code == 200:
+                data = response.json()
+                return JsonResponse(data)
+            else:
+                # print("error")
+                return HttpResponse("error")
+        else:
+            print("error")
+            return redirect(reverse("search"))

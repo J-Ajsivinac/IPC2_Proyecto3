@@ -45,10 +45,24 @@
 }
 
 .content-return .content-list {
-    /* height: 40%; */
-    /* background-color: black; */
     padding: 5px 20px 5px 20px;
     width: 60%;
+    overflow: auto;
+    /* background-color: antiquewhite; */
+    /* height: 160px; */
+}
+
+.content-return .content-list::-webkit-scrollbar {
+    width: 0.7rem;
+}
+
+.content-return .content-list::-webkit-scrollbar-track {
+    background: #1e1e24;
+}
+
+.content-return .content-list::-webkit-scrollbar-thumb {
+    background: linear-gradient(#9090AB, #5A5A6B);
+    border-radius: 0.2rem;
 }
 
 .content-list section {
@@ -75,7 +89,9 @@
 }
 
 .content-return .content-graph {
-    /* height: 40%; */
-    /* background-color: black; */
     padding: 5px 20px 5px 20px;
+}
+
+.vanilla-calendar_multiple {
+    width: 580px;
 }
