@@ -55,8 +55,17 @@ class Controller:
                 count = Counter(hash_dates)
             if count is not None:
                 dictionary[v.date] = count
+        response = {}
+        if len(dictionary) == 0:
+            response["type_r"] = 0
+            response["message"] = "No se encontradon datos"
+            response["response"] = ""
+        else:
+            response["type_r"] = 1
+            response["message"] = "Si se encontraron datos"
+            response["response"] = dictionary
 
-        return dictionary
+        return response
 
     def filter_users(self, start, end, list_data: list):
         date_start = datetime.strptime(start, "%d/%m/%Y")
@@ -88,8 +97,16 @@ class Controller:
                 count = Counter(user_dates)
             if count is not None:
                 dictionary[v.date] = count
-
-        return dictionary
+        response = {}
+        if len(dictionary) == 0:
+            response["type_r"] = 0
+            response["message"] = "No se encontradon datos"
+            response["response"] = ""
+        else:
+            response["type_r"] = 1
+            response["message"] = "Si se encontraron datos"
+            response["response"] = dictionary
+        return response
 
     def filter_sentiments(self, start, end, list_data: list):
         date_start = datetime.strptime(start, "%d/%m/%Y")
@@ -111,9 +128,8 @@ class Controller:
         list_u = copy.deepcopy(self.only_dates(list_data))
         for v in list_u:
             current_date = v.date
-            # count = None
             results = {}
-            current_date = datetime.strptime(current_date, "%d/%m/%Y")
+            current_date = self.converter_date(current_date)
             count_posit = 0
             count_neg = 0
             count_n = 0
@@ -127,12 +143,21 @@ class Controller:
                             count_neg += 1
                         else:
                             count_n += 1
-            results["positivo"] = count_posit
-            results["negativo"] = count_neg
-            results["neutro"] = count_n
-            dictionary[v.date] = results
-
-        return dictionary
+                results["positivo"] = count_posit
+                results["negativo"] = count_neg
+                results["neutro"] = count_n
+                dictionary[v.date] = results
+        response = {}
+        print(dictionary.values())
+        if len(dictionary.values()) == 0:
+            response["type_r"] = 0
+            response["message"] = "No se encontradon datos"
+            response["response"] = ""
+        else:
+            response["type_r"] = 1
+            response["message"] = "Si se encontraron datos"
+            response["response"] = dictionary
+        return response
 
     def data_graph_sentiments(self, start, end, list_data: list):
         date_start = datetime.strptime(start, "%d/%m/%Y")
