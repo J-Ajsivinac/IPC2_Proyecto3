@@ -21,9 +21,9 @@
                     <div class="options">
                         <p>Buscar Por</p>
                         <select name="searchBy">
-                            <option value="hastags" selected>Hastags</option>
-                            <option value="mesiones">Mensiones</option>
-                            <option value="sentimientos">Sentimientos</option>
+                            <option value="hashtags" selected>Hastags</option>
+                            <option value="mentions">Mensiones</option>
+                            <option value="sentiments">Sentimientos</option>
                         </select>
                     </div>
                 </div>
@@ -48,29 +48,33 @@
             <div class="content-list">
                 <h3 class="title-list">Resultados</h3>
                 <section>
-                    <span class="title-date">21/03/2023</span>
-                    <div class="card-results">
-                        <div class="content-right">
-                            <i class="fa-regular fa-message"></i>
-                            <span class="name-result">Usuario 1</span>
-                        </div>
-                        <span class="number-result">10 mensajes</span>
+
+                    {% if data is not None %}
+                    {% if type_r == 0 %}
+                    <div class="content-date-results content-no-data">
+                        <span>No se encontraron Datos</span>
                     </div>
-                    <div class="card-results">
-                        <div class="content-right">
-                            <i class="fa-regular fa-message"></i>
-                            <span class="name-result">Usuario 1</span>
+                    {% else %}
+
+                    {% for entry in data %}
+                    <div class="content-date-results">
+                        <!-- <span class="title-date">21/03/2023</span> -->
+                        <span class="title-date">{{entry.date}}</span>
+                        {% for result, value in entry.results.items %}
+                        <div class="card-results">
+                            <div class="content-right">
+                                <i class="fa-regular fa-message"></i>
+                                <!-- <span class="name-result">Usuario 1</span> -->
+                                <span class="name-result">{{result}}</span>
+                            </div>
+                            <!-- <span class="number-result">10 mensajes</span> -->
+                            <span class="number-result">{{value}}</span>
                         </div>
-                        <span class="number-result">10 mensajes</span>
+                        {% endfor %}
                     </div>
-                    <span class="title-date">22/03/2023</span>
-                    <div class="card-results">
-                        <div class="content-right">
-                            <i class="fa-regular fa-message"></i>
-                            <span class="name-result">Usuario 1</span>
-                        </div>
-                        <span class="number-result">10 mensajes</span>
-                    </div>
+                    {% endfor %}
+                    {% endif %}
+                    {% endif %}
                 </section>
             </div>
             <div class="content-graph">

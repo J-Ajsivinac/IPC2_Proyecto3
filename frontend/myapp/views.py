@@ -64,31 +64,48 @@ def search(request):
         return render(request, "search.html")
     elif request.method == "POST":
         response = None
-        if "searchBy" in request.POST and "rangeDate" in request.POST:
-            searchBy = request.POST["searchBy"]
+        if "rangeDate" in request.POST:
+            search_by = request.POST["searchBy"]
 
-            rangeDate = request.POST["rangeDate"]
-            rangeDate = rangeDate.split("-")
-            if len(rangeDate) != 2:
-                print(rangeDate, "error")
+            range_date = request.POST["rangeDate"]
+            range_date = range_date.split("-")
+            if len(range_date) != 2:
+                print(range_date, "error")
                 return redirect(reverse("search"))
-            temp = "14/01/2023"
-            start = rangeDate[0].strip()
-            end = rangeDate[1].strip()
-            print(end, f" {temp} ", start)
-            api_url = "http://127.0.0.1:3020/devolverHastags"
+            start = range_date[0].strip()
+            end = range_date[1].strip()
+            api_url = ""
+            if search_by == "hashtags":
+                api_url = "http://127.0.0.1:3020/devolverHastags"
+            elif search_by == "mentions":
+                api_url = "http://127.0.0.1:3020/devolverMenciones"
+            elif search_by == "sentiments":
+                api_url = "http://127.0.0.1:3020/devolverSentimientos"
             data = {"start": start, "end": end}
             data_json = json.dumps(data)
             headers = {"Content-Type": "application/json"}
             response = requests.post(
                 api_url, headers=headers, data=data_json, timeout=1000
             )
+            response_api = response.json()
             if response.status_code == 200:
-                data = response.json()
-                return JsonResponse(data)
+                # print(data)
+                return render(
+                    request,
+                    "search.html",
+                    {"data": response_api["data"], "type_r": response_api["type_r"]},
+                )
             else:
                 # print("error")
-                return HttpResponse("error")
+                return render(
+                    request,
+                    "search.html",
+                    {"data": response_api["data"], "type_r": response_api["type_r"]},
+                )
         else:
-            print("error")
-            return redirect(reverse("search"))
+            # print("error")
+            return render(
+                request,
+                "search.html",
+                {"data": None, "type_r": 2},
+            )

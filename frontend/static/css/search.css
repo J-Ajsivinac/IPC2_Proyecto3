@@ -69,6 +69,7 @@
     display: flex;
     flex-direction: column;
     row-gap: 10px;
+    height: 90%;
 
 }
 
@@ -94,4 +95,14 @@
 
 .vanilla-calendar_multiple {
     width: 580px;
+}
+
+/* estilo si no hay respuesta del servidor */
+.content-no-data {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
 }
