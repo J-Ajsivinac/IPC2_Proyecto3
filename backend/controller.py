@@ -2,6 +2,7 @@ import re
 from datetime import datetime
 from collections import Counter
 import copy
+from flask import jsonify
 
 
 class Controller:
@@ -25,6 +26,19 @@ class Controller:
         else:
             type_m = "neutro"
         return type_m
+
+    def formatter_response(self, response: dict):
+        reformatted_response = {
+            "message": response["message"],
+            "data": [],
+            "type_r": response["type_r"],
+        }
+        if "response" in response:
+            for date, value in response["response"].items():
+                reformatted_response["data"].append({"date": date, "results": value})
+        else:
+            reformatted_response["data"].append({"date": None, "results": None})
+        return reformatted_response
 
     def filter_hashtag(self, start, end, list_data: list):
         date_start = datetime.strptime(start, "%d/%m/%Y")
@@ -59,13 +73,12 @@ class Controller:
         if len(dictionary) == 0:
             response["type_r"] = 0
             response["message"] = "No se encontradon datos"
-            response["response"] = ""
         else:
             response["type_r"] = 1
             response["message"] = "Si se encontraron datos"
             response["response"] = dictionary
-
-        return response
+        response_return = self.formatter_response(response)
+        return response_return
 
     def filter_users(self, start, end, list_data: list):
         date_start = datetime.strptime(start, "%d/%m/%Y")
@@ -101,12 +114,12 @@ class Controller:
         if len(dictionary) == 0:
             response["type_r"] = 0
             response["message"] = "No se encontradon datos"
-            response["response"] = ""
         else:
             response["type_r"] = 1
             response["message"] = "Si se encontraron datos"
             response["response"] = dictionary
-        return response
+        response_return = self.formatter_response(response)
+        return response_return
 
     def filter_sentiments(self, start, end, list_data: list):
         date_start = datetime.strptime(start, "%d/%m/%Y")
@@ -148,16 +161,16 @@ class Controller:
                 results["neutro"] = count_n
                 dictionary[v.date] = results
         response = {}
-        print(dictionary.values())
+        # print(dictionary.values())
         if len(dictionary.values()) == 0:
             response["type_r"] = 0
             response["message"] = "No se encontradon datos"
-            response["response"] = ""
         else:
             response["type_r"] = 1
             response["message"] = "Si se encontraron datos"
             response["response"] = dictionary
-        return response
+        response_return = self.formatter_response(response)
+        return response_return
 
     def data_graph_sentiments(self, start, end, list_data: list):
         date_start = datetime.strptime(start, "%d/%m/%Y")
