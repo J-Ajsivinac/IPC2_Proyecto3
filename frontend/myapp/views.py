@@ -75,32 +75,42 @@ def search(request):
             start = range_date[0].strip()
             end = range_date[1].strip()
             api_url = ""
-            if search_by == "hashtags":
-                api_url = "http://127.0.0.1:3020/devolverHastags"
-            elif search_by == "mentions":
-                api_url = "http://127.0.0.1:3020/devolverMenciones"
-            elif search_by == "sentiments":
-                api_url = "http://127.0.0.1:3020/devolverSentimientos"
-            data = {"start": start, "end": end}
-            data_json = json.dumps(data)
-            headers = {"Content-Type": "application/json"}
-            response = requests.post(
-                api_url, headers=headers, data=data_json, timeout=1000
-            )
-            response_api = response.json()
-            if response.status_code == 200:
-                # print(data)
-                return render(
-                    request,
-                    "search.html",
-                    {"data": response_api["data"], "type_r": response_api["type_r"]},
+            try:
+                if search_by == "hashtags":
+                    api_url = "http://127.0.0.1:3020/devolverHastags"
+                elif search_by == "mentions":
+                    api_url = "http://127.0.0.1:3020/devolverMenciones"
+                elif search_by == "sentiments":
+                    api_url = "http://127.0.0.1:3020/devolverSentimientos"
+                data = {"start": start, "end": end}
+                data_json = json.dumps(data)
+                headers = {"Content-Type": "application/json"}
+                response = requests.post(
+                    api_url, headers=headers, data=data_json, timeout=1000
                 )
-            else:
-                # print("error")
+                response_api = response.json()
+                if response.status_code == 200:
+                    # print(data)
+                    return render(
+                        request,
+                        "search.html",
+                        {
+                            "data": response_api["data"],
+                            "type_r": response_api["type_r"],
+                        },
+                    )
+                else:
+                    # print("error")
+                    return render(
+                        request,
+                        "search.html",
+                        {"data": "None", "type_r": 0},
+                    )
+            except Exception as _:
                 return render(
                     request,
                     "search.html",
-                    {"data": response_api["data"], "type_r": response_api["type_r"]},
+                    {"data": "None", "type_r": 0},
                 )
         else:
             # print("error")

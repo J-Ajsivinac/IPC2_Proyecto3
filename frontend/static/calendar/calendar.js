@@ -1,8 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
-// start irrelevant code
     document.querySelector('#calendar-input').style.display = "flex";
-    // end irrelevant code
-
     const options = {
     input: true,
     type: "multiple",

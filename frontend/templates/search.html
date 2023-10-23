@@ -6,7 +6,8 @@
 <link href="{% static 'calendar/vanilla-calendar.min.css' %}" rel="stylesheet">
 <link href="{% static 'calendar/themes/light.min.css' %}" rel="stylesheet">
 <link href="{% static 'calendar/themes/dark.min.css' %}" rel="stylesheet">
-<script src="{% static 'calendar/vanilla-calendar.min.js' %}" rel="stylesheet" defer></script>
+<script src="https://cdn.jsdelivr.net/npm/@uvarov.frontend/vanilla-calendar/build/vanilla-calendar.min.js"
+    defer></script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lato-font/3.0.0/css/lato-font.min.css">
 {% endblock %}
 {% block content %}
@@ -90,6 +91,5 @@
 {% endblock %}
 {% block scripts %}
 <script src="{% static 'calendar/theme.js' %}"></script>
-<script src="{% static 'calendar/calendar-from.js' %}"></script>
-<script src="{% static 'calendar/calendar-to.js' %}"></script>
+<script src="{% static 'calendar/calendar.js' %}"></script>
 {% endblock %}
