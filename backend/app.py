@@ -56,30 +56,6 @@ def get_sentiments():
     return jsonify(response)
 
 
-@app.route("/devolverGraficaSentimientos", methods=["POST"])
-def get_graph_sentiments():
-    start = request.json["start"]
-    end = request.json["end"]
-    response = origin_data.return_sentiments(start, end)
-    return jsonify(response)
-
-
-@app.route("/devolverGraficaHashtags", methods=["POST"])
-def get_graph_hash():
-    start = request.json["start"]
-    end = request.json["end"]
-    response = origin_data.return_graph_hash(start, end)
-    return jsonify(response)
-
-
-@app.route("/devolverGraficaUsuarios", methods=["POST"])
-def get_graph_users():
-    start = request.json["start"]
-    end = request.json["end"]
-    response = origin_data.return_graph_u(start, end)
-    return jsonify(response)
-
-
 @app.route("/limpiarDatos")
 def restet():
     origin_data.reset_data()

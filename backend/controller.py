@@ -32,6 +32,7 @@ class Controller:
             "message": response["message"],
             "data": [],
             "type_r": response["type_r"],
+            "data_graph": response["data_graph"],
         }
         if "response" in response:
             for date, value in response["response"].items():
@@ -73,10 +74,13 @@ class Controller:
         if len(dictionary) == 0:
             response["type_r"] = 0
             response["message"] = "No se encontradon datos"
+            response["data_graph"] = None
         else:
+            response_graph = self.data_graph_hashtags(start, end, list_data)
             response["type_r"] = 1
             response["message"] = "Si se encontraron datos"
             response["response"] = dictionary
+            response["data_graph"] = response_graph["graph_data"]
         response_return = self.formatter_response(response)
         return response_return
 
@@ -114,10 +118,13 @@ class Controller:
         if len(dictionary) == 0:
             response["type_r"] = 0
             response["message"] = "No se encontradon datos"
+            response["data_graph"] = None
         else:
+            response_graph = self.data_graph_users(start, end, list_data)
             response["type_r"] = 1
             response["message"] = "Si se encontraron datos"
             response["response"] = dictionary
+            response["data_graph"] = response_graph["graph_data"]
         response_return = self.formatter_response(response)
         return response_return
 
@@ -165,10 +172,13 @@ class Controller:
         if len(dictionary.values()) == 0:
             response["type_r"] = 0
             response["message"] = "No se encontradon datos"
+            response["data_graph"] = None
         else:
+            response_graph = self.data_graph_sentiments(start, end, list_data)
             response["type_r"] = 1
             response["message"] = "Si se encontraron datos"
             response["response"] = dictionary
+            response["data_graph"] = response_graph["graph_data"]
         response_return = self.formatter_response(response)
         return response_return
 
@@ -201,8 +211,9 @@ class Controller:
             results["positivo"] = count_posit
             results["negativo"] = count_neg
             results["neutro"] = count_n
-            dictionary[value.date] = results
-        return dictionary
+            response = {}
+            response["graph_data"] = results
+        return response
 
     def only_dates(self, list_data: list):
         lista_u = []
@@ -290,16 +301,8 @@ class Controller:
                             count += 1
             if count > 0:
                 dictionary[current_hashtag] = count
-        # print(dictionary)
         response = {}
-        if len(dictionary) == 0:
-            response["type_r"] = 0
-            response["message"] = "No se encontradon datos"
-            response["response"] = ""
-        else:
-            response["type_r"] = 1
-            response["message"] = "Si se encontraron datos"
-            response["response"] = dictionary
+        response["graph_data"] = dictionary
         return response
 
     def data_graph_users(self, start, end, list_data: list):
@@ -321,12 +324,5 @@ class Controller:
             if count > 0:
                 dictionary[current_hashtag] = count
         response = {}
-        if len(dictionary) == 0:
-            response["type_r"] = 0
-            response["message"] = "No se encontradon datos"
-            response["response"] = ""
-        else:
-            response["type_r"] = 1
-            response["message"] = "Si se encontraron datos"
-            response["response"] = dictionary
+        response["graph_data"] = dictionary
         return response
