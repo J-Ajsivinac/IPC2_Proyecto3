@@ -89,6 +89,9 @@ def search(request):
                     api_url, headers=headers, data=data_json, timeout=1000
                 )
                 response_api = response.json()
+                # graph_data = json.dumps(response_api["data_graph"])
+                graph_data = {"data_graph": response_api["data_graph"]}
+                graph_data = json.dumps(graph_data)
                 if response.status_code == 200:
                     # print(data)
                     return render(
@@ -97,6 +100,7 @@ def search(request):
                         {
                             "data": response_api["data"],
                             "type_r": response_api["type_r"],
+                            "graph_data": graph_data,
                         },
                     )
                 else:
@@ -119,3 +123,9 @@ def search(request):
                 "search.html",
                 {"data": None, "type_r": 2},
             )
+
+
+# def test(request):
+#     graph_data = {"data_graph": {"bienvenidaUSAC": "4", "saludoUSAC": "2"}}
+#     print(json.dumps(graph_data))
+#     return render(request, "graph.html", {"graph_data": json.dumps(graph_data)})

@@ -81,7 +81,17 @@
             <div class="content-graph">
                 <h3>Gráfica</h3>
                 <section>
-                    <span>Grafica</span>
+                    {% if data is not None %}
+                    {% if type_r == 0 %}
+                    <div class="content-date-results content-no-data">
+                        <span>No se encontraron Datos</span>
+                    </div>
+                    {% else %}
+                    <div>
+                        <canvas id="myChart" style="background: #181a1b;"></canvas>
+                    </div>
+                    {% endif %}
+                    {% endif %}
                 </section>
             </div>
         </div>
@@ -90,6 +100,63 @@
 
 {% endblock %}
 {% block scripts %}
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-autocolors"></script>
 <script src="{% static 'calendar/theme.js' %}"></script>
 <script src="{% static 'calendar/calendar.js' %}"></script>
+{% if data is not None %}
+{% if type_r != 0 %}
+<script type="text/javascript">
+    var graphData = JSON.parse('{{ graph_data|escapejs }}');
+
+    console.log(graphData)
+    // Ahora puedes usar graphData en JavaScript
+    var keys = Object.keys(graphData.data_graph);
+    var values = Object.values(graphData.data_graph);
+
+    console.log("Claves:", keys);
+    console.log("Valores:", values);
+    // console.log(data_graph)
+    const ctx = document.getElementById('myChart');
+
+    new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: keys,
+            datasets: [{
+                label: '# of Votes',
+                data: values,
+                borderWidth: 1,
+                backgroundColor: [
+                    'rgba(255, 26, 104, 0.2)',
+                    'rgba(54, 162, 235, 0.2)',
+                    'rgba(255, 206, 86, 0.2)',
+                    'rgba(75, 192, 192, 0.2)',
+                    'rgba(153, 102, 255, 0.2)',
+                    'rgba(255, 159, 64, 0.2)',
+                    'rgba(0, 0, 0, 0.2)'
+                ],
+                borderColor: [
+                    'rgba(255, 26, 104, 0.6)',
+                    'rgba(54, 162, 235, 0.6)',
+                    'rgba(255, 206, 86, 0.6)',
+                    'rgba(75, 192, 192, 0.6)',
+                    'rgba(153, 102, 255, 0.6)',
+                    'rgba(255, 159, 64, 0.6)',
+                    'rgba(0, 0, 0, 0.6)'
+                ],
+            }]
+        },
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            },
+        }
+    });
+</script>
+{% endif %}
+{% endif %}
+
 {% endblock %}
