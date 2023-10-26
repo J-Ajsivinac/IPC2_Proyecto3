@@ -2,6 +2,7 @@ from flask import Flask, jsonify, request
 from flask_cors import CORS
 from read import Read
 from builders import *
+from writeResume import Write
 from controller import Controller
 import os
 import copy
@@ -62,11 +63,23 @@ def restet():
     return {"mensaje": "Sistema inicializado"}
 
 
-@app.route("/test")
-def test():
-    for msg in origin_data.messages:
-        print(msg.users)
-    return {"message": "test"}
+@app.route("/SalidaMensajes", methods=["POST"])
+def create_msg():
+    req = request.json["root"]
+    root = os.path.join(req, "resumenMensajes.xml")
+    write = Write()
+    write.write_resume(root, origin_data.messages)
+    return {"mensaje": "Archivo grabado exitosamente"}
+
+
+@app.route("/SalidaSentimientos", methods=["POST"])
+def create_sentiments():
+    req = request.json["root"]
+    root = os.path.join(req, "resumenConfig.xml")
+    write = Write()
+    # test.xml
+    write.write_resume_confif(root, origin_data.dict_conf)
+    return {"mensaje": "Archivo grabado exitosamente"}
 
 
 if __name__ == "__main__":

@@ -100,7 +100,6 @@ class Read:
 
     def write_file_messages(self):
         _root_file = os.path.dirname(os.path.abspath(__file__))
-        # add_data = ET.fromstring(data)
         db_msg = os.path.join(_root_file, "DB", "messages.xml").replace("\\", "\\\\")
         try:
             tree = ET.parse(db_msg)
@@ -148,6 +147,12 @@ class Read:
                 hastags.append(hashtag.text)
             list_msg.append(Message(fecha, users, hastags, tipo))
 
+    def to_unicode(self, data):
+        string = data.lower()
+        string = string.strip()
+        string = unidecode(string)
+        return string
+
     def load_msg(self, content, conf: dict, list_msg: list):
         # db_msg = self.write_file_messages()
         db_root_file = self.write_file_messages()
@@ -166,6 +171,7 @@ class Read:
             search_hastag = []
             date_read = msg.findtext("FECHA")
             msg_read = msg.findtext("TEXTO")
+            msg_read = self.to_unicode(msg_read)
 
             mensaje = ET.SubElement(db_root, "mensaje")
 
