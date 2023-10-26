@@ -96,11 +96,14 @@
                 <span>No se encontraron Datos</span>
             </div>
             {% else %}
-            <section class="content-graph-result">
-                <div>
-                    <canvas id="myChart" style="background: #181a1b;"></canvas>
+            <div class="content-chart">
+                <div class="content-button-d">
+                    <form action="">
+                        <button id="savePDF" type="submit"><i class="ti ti-file-download"></i>Descargar</input>
+                    </form>
                 </div>
-            </section>
+                <canvas id="myChart"></canvas>
+            </div>
             {% endif %}
             {% else %}
             <div class="content-no-data">
@@ -118,18 +121,13 @@
 <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-autocolors"></script>
 <script src="{% static 'calendar/theme.js' %}"></script>
 <script src="{% static 'calendar/calendar.js' %}"></script>
-{% if data is not None %}
-{% if type_r != 0 %}
-<script type="text/javascript">
-    var graphData = JSON.parse('{{ graph_data|escapejs }}');
 
-    console.log(graphData)
-    // Ahora puedes usar graphData en JavaScript
+<script type="text/javascript">
+    Chart.defaults.font.size = 15;
+    Chart.defaults.font.family = "Poppins"
+    var graphData = JSON.parse('{{ graph_data|escapejs }}');
     var keys = Object.keys(graphData.data_graph);
     var values = Object.values(graphData.data_graph);
-
-    console.log("Claves:", keys);
-    console.log("Valores:", values);
     // console.log(data_graph)
     const ctx = document.getElementById('myChart');
 
@@ -140,37 +138,64 @@
             datasets: [{
                 label: '# of Votes',
                 data: values,
-                borderWidth: 1,
                 backgroundColor: [
-                    'rgba(255, 26, 104, 0.2)',
-                    'rgba(54, 162, 235, 0.2)',
-                    'rgba(255, 206, 86, 0.2)',
-                    'rgba(75, 192, 192, 0.2)',
-                    'rgba(153, 102, 255, 0.2)',
-                    'rgba(255, 159, 64, 0.2)',
-                    'rgba(0, 0, 0, 0.2)'
+                    'rgba(209, 71, 83, 0.4)',
+                    'rgba(209, 116, 82, 0.4)',
+                    'rgba(140, 209, 92, 0.4)',
+                    'rgba(50, 209, 178, 0.4)',
+                    'rgba(202, 61, 209, 0.4)',
                 ],
-                borderColor: [
-                    'rgba(255, 26, 104, 0.6)',
-                    'rgba(54, 162, 235, 0.6)',
-                    'rgba(255, 206, 86, 0.6)',
-                    'rgba(75, 192, 192, 0.6)',
-                    'rgba(153, 102, 255, 0.6)',
-                    'rgba(255, 159, 64, 0.6)',
-                    'rgba(0, 0, 0, 0.6)'
+                hoverBackgroundColor: [
+                    'rgba(209, 71, 83, 0.5)',
+                    'rgba(209, 116, 82, 0.5)',
+                    'rgba(140, 209, 92, 0.5)',
+                    'rgba(50, 209, 178, 0.5)',
+                    'rgba(202, 61, 209, 0.5)',
                 ],
+                borderRadius: 5
             }]
         },
         options: {
             scales: {
+                x: {
+                    barPercentage: 100,
+                    categoryPercentage: 1,
+                    border: {
+                        display: false,
+                        color: 'red'
+                    },
+                    grid: {
+                        drawOnChartArea: false,
+                    },
+                    ticks: {
+                        color: '#89898f',
+                    }
+                }
+                ,
                 y: {
-                    beginAtZero: true
+                    beginAtZero: true,
+                    grid: {
+                        color: "#3d3d47",
+                    },
+                    border: {
+                        dash: [5, 5],
+                        display: false,
+                    },
+                    ticks: {
+                        color: '#89898f',
+                        stepSize: 1,
+                    }
+                },
+            },
+            plugins: {
+                legend: {
+                    display: false,
                 }
             },
+            responsive: true,
         }
+
     });
 </script>
-{% endif %}
-{% endif %}
 
 {% endblock %}

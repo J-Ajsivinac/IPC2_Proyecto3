@@ -2,9 +2,8 @@
     display: flex;
     flex-direction: column;
     width: 100%;
-    height: 99%;
+    height: 100%;
     color: white;
-    /* background-color: #41d8f8; */
     padding-right: 25px;
     gap: 10px;
 }
@@ -116,7 +115,7 @@ form.search-bar {
     display: flex;
     flex-direction: row;
     column-gap: 10px;
-    max-height: 71vh;
+    max-height: 73vh;
 }
 
 .content-cards-r {
@@ -202,7 +201,7 @@ form.search-bar {
 .content-return .content-graph {
     display: flex;
     width: 40%;
-    /* padding: 5px 20px 5px 20px; */
+    height: 100%;
     background-color: #1e1f23;
     border-radius: 10px;
     flex-direction: column;
@@ -257,4 +256,47 @@ form.search-bar {
 
 .content-no-data i {
     font-size: 2rem;
+}
+
+
+.content-chart {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+    margin-top: 10px;
+    row-gap: 10px;
+    /* background-color: #404557; */
+}
+
+.content-button-d {
+    display: flex;
+    justify-content: end;
+    padding: 10px 0px;
+
+}
+
+.content-button-d button {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 7px 12px;
+    background-color: #d3b1ff;
+    color: #1e1e23;
+    border: 0px;
+    font-weight: 500;
+    border-radius: 6px;
+    column-gap: 5px;
+}
+
+.content-button-d button i {
+    font-size: 1.2rem;
+}
+
+
+#myChart {
+    background-color: #1e1f23;
+    width: 100%;
+    border-radius: 10px;
+    padding: 7px;
 }
