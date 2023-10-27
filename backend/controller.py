@@ -190,11 +190,11 @@ class Controller:
 
         dictionary = {}
         list_u = copy.deepcopy(self.only_dates(list_data))
+        count_posit = 0
+        count_neg = 0
+        count_n = 0
         for value in list_u:
             results = {}
-            count_posit = 0
-            count_neg = 0
-            count_n = 0
             b_date = value.date
             b_date = datetime.strptime(b_date, "%d/%m/%Y")
             for v in list_data:
