@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}Ayuda{% endblock %}
+{% block s_add %}
+<link rel="stylesheet" href="{% static 'css/help.css' %}">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css">
+{% endblock %}
+{% block content %}
+<div class="content1">
+    <div class="text">Ayuda</div>
+    <section class="content-info">
+        <div class="content-right">
+            <div class="content-personal-info">
+                <i class="ti ti-id"></i>
+                <div class="content-info-p">
+                    <p>Joab Israel</p>
+                    <p>Ajsivinac Ajsivinac</p>
+                    <p class="carnet">202200135</p>
+                </div>
+            </div>
+        </div>
+        <div class="content-left">
+            <div class="content-info-s">
+                <div class="content-data1">
+                    <i class="ti ti-book"></i>
+                    <p>Introducción a la Programación y Computación 2</p>
+                    <p>Sección N</p>
+                </div>
+                <div class="content-data">
+                    <i class="ti ti-info-small i-small"></i>
+                    <p>Ingeniería en Ciencia y Sistemas</p>
+                </div>
+                <div class="content-data">
+                    <i class="ti ti-calendar-event"></i>
+                    <p>Cuarto Semestre</p>
+                </div>
+            </div>
+            <div class="content-doc">
+                <span>Documentación</span>
+                <a href="https://github.com/J-Ajsivinac/IPC2_Proyecto3_202200135/blob/main/Doc/Documentacion_202200135.pdf"
+                    target="_blank"><i class="ti ti-eye-filled"></i>Ver</a>
+            </div>
+        </div>
+    </section>
+</div>
+{% endblock %}
+{% block scripts %}
+
+{% endblock %}

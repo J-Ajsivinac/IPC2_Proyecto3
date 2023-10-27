@@ -1,0 +1,131 @@
+.content1 {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+    color: white;
+    padding-right: 25px;
+    gap: 15px;
+}
+
+.content-info {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    column-gap: 20px;
+    background-color: #1e1f23;
+    padding: 20px;
+    border-radius: 10px;
+}
+
+.content-right {
+    display: flex;
+    flex-direction: column;
+    width: 25%;
+    background-color: #131416;
+    align-items: center;
+    justify-content: center;
+    /* text-align: center; */
+    padding: 15px;
+    border-radius: 5px;
+}
+
+.content-personal-info {
+    display: flex;
+    flex-direction: column;
+    justify-items: center;
+    align-items: center;
+    text-align: center;
+    row-gap: 10px;
+}
+
+.content-right i {
+    font-size: 3.5rem;
+    padding: 15px;
+    background-color: #292933;
+    border-radius: 50%;
+    color: #1fa4fc;
+}
+
+.content-info-p {
+    font-size: 1.1rem;
+}
+
+.carnet {
+    color: #71747d;
+}
+
+.content-left {
+    display: flex;
+    flex-direction: column;
+    width: 75%;
+    justify-content: center;
+    /* background-color: #131416; */
+    row-gap: 16px;
+}
+
+.content-info-s {
+    display: flex;
+    flex-direction: row;
+    row-gap: 10px;
+    background-color: #131416;
+    padding: 15px;
+    text-align: center;
+    border-radius: 5px;
+}
+
+.content-data1 {
+    flex: 2;
+    display: flex;
+    flex-direction: column;
+    row-gap: 10px;
+    justify-content: center;
+    align-items: center;
+}
+
+.content-data {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    row-gap: 10px;
+    justify-content: center;
+    align-items: center;
+}
+
+
+.content-data i,
+.content-data1 i {
+    font-size: 1.5rem;
+    color: #71747d;
+    padding: 10px;
+    background-color: #292933;
+    border-radius: 100%;
+}
+
+i.i-small {
+    font-size: 1.8rem;
+    padding: 9px;
+}
+
+.content-doc {
+    display: flex;
+    flex: 1;
+    flex-direction: row;
+    background-color: #131416;
+    padding: 15px;
+    border-radius: 5px;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.content-doc a {
+    text-decoration: none;
+    background-color: #4f50fc;
+    padding: 8px 25px;
+    color: white;
+    display: flex;
+    flex-direction: row;
+    column-gap: 10px;
+    align-items: center;
+    border-radius: 5px;
+}

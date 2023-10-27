@@ -125,6 +125,10 @@ def search(request):
             )
 
 
+def help_p(request):
+    return render(request, "help.html")
+
+
 # def test(request):
 #     graph_data = {"data_graph": {"bienvenidaUSAC": "4", "saludoUSAC": "2"}}
 #     print(json.dumps(graph_data))
