@@ -45,7 +45,18 @@
     </form>
     <div class="content-return">
         <div class="content-list">
-            <h3 class="title-list">Resultados</h3>
+            <div class="header-list">
+                <h3 class="title-list">Resultados</h3>
+                {% if data is not None %}
+                {% if type_r != 0 %}
+                <div class="content-button-d">
+                    <form action="">
+                        <button id="savePDF" type="submit"><i class="ti ti-file-download"></i>Descargar</input>
+                    </form>
+                </div>
+                {% endif %}
+                {% endif %}
+            </div>
             {% if data is not None %}
             {% if type_r == 0 %}
             <div class="content-date-results content-no-data">
@@ -60,7 +71,7 @@
                     {% for result, value in entry.results.items %}
                     <div class="card-results">
                         <div class="content-right">
-                            <i class="ti ti-hash"></i>
+                            <i class="ti ti-message-dots"></i>
                             <!-- <span class="name-result">Usuario 1</span> -->
                             <span class="name-result">{{result}}</span>
                         </div>
@@ -88,7 +99,18 @@
             {% endif %}
         </div>
         <div class="content-graph">
-            <h3>Gráfica</h3>
+            <div class="header-list">
+                <h3>Gráfica</h3>
+                {% if data is not None %}
+                {% if type_r != 0 %}
+                <div class="content-button-d">
+                    <form action="">
+                        <button id="savePDF" type="submit"><i class="ti ti-file-download"></i>Descargar</input>
+                    </form>
+                </div>
+                {% endif %}
+                {% endif %}
+            </div>
 
             {% if data is not None %}
             {% if type_r == 0 %}
@@ -97,11 +119,6 @@
             </div>
             {% else %}
             <div class="content-chart">
-                <div class="content-button-d">
-                    <form action="">
-                        <button id="savePDF" type="submit"><i class="ti ti-file-download"></i>Descargar</input>
-                    </form>
-                </div>
                 <canvas id="myChart"></canvas>
             </div>
             {% endif %}
@@ -110,6 +127,9 @@
                 <i class="ti ti-ban"></i>
                 <span>Sin resultados Disponibles</span>
             </div>
+            <!-- <div class="content-chart">
+                <canvas id="myChart"></canvas>
+            </div> -->
             {% endif %}
         </div>
     </div>
@@ -127,7 +147,9 @@
     Chart.defaults.font.family = "Poppins"
     var graphData = JSON.parse('{{ graph_data|escapejs }}');
     var keys = Object.keys(graphData.data_graph);
+    // var keys = ["positivo", "negativo", "neutro", "irrelevante", "no clasificado"]
     var values = Object.values(graphData.data_graph);
+    // var values = [10, 20, 30, 40, 50]
     // console.log(data_graph)
     const ctx = document.getElementById('myChart');
 
@@ -136,22 +158,23 @@
         data: {
             labels: keys,
             datasets: [{
-                label: '# of Votes',
+                label: '# de mensajes',
                 data: values,
                 backgroundColor: [
-                    'rgba(209, 71, 83, 0.4)',
-                    'rgba(209, 116, 82, 0.4)',
-                    'rgba(140, 209, 92, 0.4)',
-                    'rgba(50, 209, 178, 0.4)',
-                    'rgba(202, 61, 209, 0.4)',
+                    "#5f6a88",
+                    "#3abbfc",
+                    "#a6dffc",
+                    "#a78dfb",
+                    "#de8afa",
+
                 ],
-                hoverBackgroundColor: [
-                    'rgba(209, 71, 83, 0.5)',
-                    'rgba(209, 116, 82, 0.5)',
-                    'rgba(140, 209, 92, 0.5)',
-                    'rgba(50, 209, 178, 0.5)',
-                    'rgba(202, 61, 209, 0.5)',
-                ],
+                // hoverBackgroundColor: [
+                //     'rgba(209, 71, 83, 0.5)',
+                //     'rgba(209, 116, 82, 0.5)',
+                //     'rgba(140, 209, 92, 0.5)',
+                //     'rgba(50, 209, 178, 0.5)',
+                //     'rgba(202, 61, 209, 0.5)',
+                // ],
                 borderRadius: 5
             }]
         },
