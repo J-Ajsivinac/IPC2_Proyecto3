@@ -1,25 +1,25 @@
 <?xml version="1.0" ?>
 <datos>
     <mensaje>
-        <tipo>positivo</tipo>
-        <fecha>25/01/2023</fecha>
+        <tipo>neutro</tipo>
+        <fecha>15/01/2023</fecha>
         <usuarios>
-            <usuario>bueno</usuario>
+            <usuario>estudiante01</usuario>
             <usuario>estudiante02</usuario>
         </usuarios>
         <hashtags>
-            <hashtag>xd</hashtag>
+            <hashtag>bienvenidausac</hashtag>
         </hashtags>
     </mensaje>
     <mensaje>
-        <tipo>positivo</tipo>
-        <fecha>26/01/2023</fecha>
+        <tipo>neutro</tipo>
+        <fecha>16/01/2023</fecha>
         <usuarios>
-            <usuario>bueno</usuario>
+            <usuario>estudiante01</usuario>
             <usuario>estudiante02</usuario>
         </usuarios>
         <hashtags>
-            <hashtag>xd</hashtag>
+            <hashtag>saludousac</hashtag>
         </hashtags>
     </mensaje>
 </datos>

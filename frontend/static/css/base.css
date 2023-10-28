@@ -232,95 +232,124 @@ main.home_content .text {
 
 main.home_content section.content-init .card-init {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     width: 100%;
-    height: 135px;
     /* background-color: var(--panel-bg-color); */
-    border: 2px solid #383b41;
+    /* border: 2px solid #383b41; */
     padding: 7px 15px 12px 15px;
     border-radius: 10px;
-    row-gap: 4px;
+    column-gap: 16px;
 }
 
-main.home_content section.content-init .card-init .form {
-    padding: 15px;
-    height: 100%;
-    border-radius: 5px;
-    background-color: var(--panel-bg-color);
-}
-
-main.home_content section.content-init .card-init .form form {
+.content-top {
     display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    row-gap: 7px;
-    height: 100%;
-}
-
-main.home_content section.content-init .card-init .form form .content-input {
-    display: flex;
-    flex-direction: row;
-    width: 85%;
-    height: 100%;
-    column-gap: 10px;
-    align-items: center;
-    /* border: 1px solid #383b41; */
-    padding: 5px 12px 5px 12px;
-    border-radius: 5px;
-    background-color: #232529;
-}
-
-main.home_content section.content-init .card-init .form form .content-input input {
+    flex-direction: column;
     width: 100%;
-    height: 40px;
-    line-height: 40px;
-    vertical-align: middle;
-    cursor: pointer;
-    /* background-color: #1c3852; */
+    height: 100%;
+    /* align-items: center; */
+    background-color: #1e1f23;
+    border-radius: 10px;
+    padding: 10px 18px;
+    column-gap: 16px;
 }
 
-main.home_content section.content-init .card-init .form form .content-input .content-icon i {
-    font-size: 25px;
-    color: #b4d6ff;
+.title-init {
+    padding: 8px 0px;
 }
 
-main.home_content section.content-init .card-init .form form .content-input input::-webkit-file-upload-button {
-    display: none;
-}
-
-.custom-file-label {
+.content-i-form {
     display: flex;
-    justify-content: center;
+    flex-direction: row;
+    width: 100%;
+    height: 100%;
     align-items: center;
-    font-size: 12px;
-    background-color: #1b1d21;
-    padding: 7px;
-    width: 210px;
-    border-radius: 6px;
-    cursor: pointer;
+    background-color: #1e1f23;
+    border-radius: 10px;
+    padding: 10px 10px 16px 10px;
+    column-gap: 16px;
 }
 
-.custom-file-label i {
-    margin-right: 9px;
-}
-
-.content-btn-send {
+.content-i-form .card-title {
     display: flex;
-    width: 15%;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
-    /* background-color: #1c3852; */
+    column-gap: 10px;
+    /* flex: 1; */
+    width: 90px;
+    height: 90px;
+    background-color: #131416;
+    border-radius: 10px;
+    /* padding: 30px 15px; */
+    /* padding: 30px 0px; */
 }
 
-.content-btn-send button {
-    background-color: #b1daff;
+.content-i-form .card-title i {
+    font-size: 2.2rem;
+    color: white;
+}
+
+.content-i-form .form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    column-gap: 10px;
+    /* flex: 4; */
+    width: 90%;
+}
+
+.form-1 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    column-gap: 10px;
+    /* flex: 4; */
+    width: 100%;
+}
+
+.form-1 form {
+    display: flex;
+    flex-direction: column;
+    row-gap: 20px;
+    width: 100%;
+}
+
+.content-i-form .form form {
+    display: flex;
+    flex-direction: column;
+    row-gap: 20px;
+    width: 100%;
+}
+
+
+
+.content-i-form .form form button,
+.content-forms .form-1 form button {
+    background-color: #554fea;
+    font-size: 16px;
     border: none;
-    padding: 7px;
+
+    color: white;
+    padding: 0.5rem 1.25rem;
     border-radius: 6px;
 }
 
-.content-btn-send button i {
+.content-i-form .form form button.btn-init {
+    background-color: #fe9378;
+    color: #302821;
+    font-weight: 500;
+}
+
+.content-i-form .form form button i,
+.content-forms .form-1 form button i {
     margin-right: 7px;
+}
+
+.content-forms {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    row-gap: 20px;
 }
 
 main.home_content section.content-init .card-init-restart {
@@ -357,4 +386,43 @@ main.home_content section.content-init .card-init-restart {
 
 .card-init-restart .content-btn-restart form button i {
     margin-right: 10px;
+}
+
+/* Estilos inputs tipo File */
+.inputfile {
+    width: 0.1px;
+    height: 0.1px;
+    opacity: 0;
+    overflow: hidden;
+    position: absolute;
+    z-index: -1;
+}
+
+.inputfile+label {
+    max-width: 100%;
+    font-size: 1.25rem;
+    font-weight: 700;
+    white-space: nowrap;
+    cursor: pointer;
+    display: inline-block;
+    text-align: center;
+    overflow: hidden;
+    padding: 0.5rem 1.25rem;
+    border-radius: 5px;
+}
+
+.iborrainputfile {
+    font-size: 16px;
+    font-weight: normal;
+}
+
+.inputfile-1+label {
+    color: #fff;
+    background-color: #2a314b;
+}
+
+.inputfile-1:focus+label,
+.inputfile-1.has-focus+label,
+.inputfile-1+label:hover {
+    background-color: #202539;
 }

@@ -25,12 +25,13 @@ def index(request):
         return render(request, "index.html", {"exito": exito})
     elif request.method == "POST":
         # cargar diccionario de  configuraciones
-        if "config" in request.FILES:
+        if "file-1" in request.FILES:
             exito = None
-            print("entro en config")
+
             try:
-                archivo = request.FILES["config"]
+                archivo = request.FILES["file-1"]
                 contenido = archivo.read()
+                # print(contenido)
                 api_url = "http://127.0.0.1:3020/grabarConfiguracion"
                 response = requests.post(api_url, data=contenido, timeout=100)
                 exito = response.status_code == 200
@@ -38,13 +39,14 @@ def index(request):
                 exito = False
 
             # request.method = "GET"
+
             return redirect(f"{reverse('index')}?exito={exito}")
         # cargar mensajes para analizar
-        elif "msgs" in request.FILES:
+        elif "file-2" in request.FILES:
             exito = None
-            print("entro en config")
+            # print("entro en config")
             try:
-                archivo = request.FILES["msgs"]
+                archivo = request.FILES["file-2"]
                 contenido = archivo.read()
                 api_url = "http://127.0.0.1:3020/grabarMensajes"
                 response = requests.post(api_url, data=contenido, timeout=1000)
@@ -70,7 +72,7 @@ def search(request):
             range_date = request.POST["rangeDate"]
             range_date = range_date.split("-")
             if len(range_date) != 2:
-                print(range_date, "error")
+                # print(range_date, "error")
                 return redirect(reverse("search"))
             start = range_date[0].strip()
             end = range_date[1].strip()

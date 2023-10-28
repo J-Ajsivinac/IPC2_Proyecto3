@@ -1,86 +1,139 @@
 {% extends "base.html" %}
 {% load static %}
 {% block title %}Inicio{% endblock %}
+{% block s_add %}
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css">
+{% endblock %}
 {% block content %}
+
+<!-- ALERTAS -->
+{% if exito is not None %}
+{% if exito %}
+<script>
+    Swal.fire(
+        'Archivos correctos',
+        'That thing is still around?',
+        'succes'
+    )
+</script>
+{% else %}
+<script>
+    Swal.fire(
+        'Error',
+        'That thing is still around?',
+        'error'
+    )
+</script>
+{% endif %}
+<script>
+    if (window.history.replaceState) {
+        window.history.replaceState({}, document.title, window.location.pathname);
+    }
+</script>
+{% endif %}
+
 <div class="content">
     <div class="text">Inicio</div>
     <section class="content-init">
         <div class="title-content">Elija una Opción</div>
         <div class="card-init">
             <!-- <img src="" alt=""> -->
-            <div class="card-title">Cargar Configuración</div>
-            {% if exito is not None %}
-            {% if exito %}
-            <script>
-                Swal.fire(
-                    'Archivos correctos',
-                    'That thing is still around?',
-                    'succes'
-                )
-            </script>
-            {% else %}
-            <script>
-                Swal.fire(
-                    'Error',
-                    'That thing is still around?',
-                    'error'
-                )
-            </script>
-            {% endif %}
-            <script>
-                if (window.history.replaceState) {
-                    window.history.replaceState({}, document.title, window.location.pathname);
-                }
-            </script>
-            {% endif %}
-            <div class="form">
-                <form method="post" enctype="multipart/form-data">
-                    {% csrf_token %}
-                    <div class="content-input">
-                        <input type="file" id="file" name="config" accept=".xml" required>
-                        <label for="file" class="custom-file-label">
-                            <i class="fa-solid fa-file"></i> Seleccionar archivo
-                        </label>
+            <div class="content-top">
+                <span class="title-init">Cargar Configuración</span>
+                <div class="content-i-form">
+                    <div class="card-title">
+                        <i class="ti ti-settings"></i>
+                        <!-- <span>Configuración</span> -->
                     </div>
-                    <div class="content-btn-send">
-                        <button type="submit"><i class="fa-solid fa-arrow-up-from-bracket"></i>Enviar
-                            archivo</button>
-                    </div>
+                    <div class="form">
+                        <form method="post" enctype="multipart/form-data">
+                            {% csrf_token %}
+                            <input type="file" name="file-1" id="file-1" class="inputfile inputfile-1" accept=".xml"
+                                required />
+                            <label for="file-1">
+                                <i class="ti ti-file-type-xml"></i>
+                                <span class="iborrainputfile">Seleccionar archivo</span>
+                            </label>
+                            <button type="submit"><i class="fa-solid fa-arrow-up-from-bracket"></i>Enviar
+                                archivo</button>
 
-                </form>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="content-top">
+                <span class="title-init">Cargar Mensajes</span>
+                <div class="content-i-form">
+                    <div class="card-title">
+                        <i class="ti ti-message-2"></i>
+                        <!-- <span>Configuración</span> -->
+                    </div>
+                    <div class="form">
+                        <form method="post" enctype="multipart/form-data">
+                            {% csrf_token %}
+                            <input type="file" name="file-2" id="file-2" class="inputfile inputfile-1" accept=".xml"
+                                required />
+                            <label for="file-2">
+                                <i class="ti ti-file-type-xml"></i>
+                                <span class="iborrainputfile">Seleccionar archivo</span>
+                            </label>
+                            <button type="submit"><i class="fa-solid fa-arrow-up-from-bracket"></i>Enviar
+                                archivo</button>
+
+                        </form>
+                    </div>
+                </div>
             </div>
         </div>
+
         <div class="card-init">
             <!-- <img src="" alt=""> -->
-            <div class="card-title">Cargar Mensajes</div>
-            <div class="form">
-                <form action="" method="post" enctype="multipart/form-data">
-                    {% csrf_token %}
-                    <div class="content-input">
-                        <input type="file" id="file_m" name="msgs" accept=".xml" required>
-                        <label for="file_m" class="custom-file-label">
-                            <i class="fa-solid fa-file"></i> Seleccionar archivo
-                        </label>
+            <div class="content-top">
+                <span class="title-init">Generar Archivos</span>
+                <div class="content-i-form">
+                    <div class="card-title">
+                        <i class="ti ti-file-download"></i>
+                        <!-- <span>Configuración</span> -->
                     </div>
-                    <div class="content-btn-send">
-                        <button type="submit"><i class="fa-solid fa-arrow-up-from-bracket"></i>Enviar
-                            archivo</button>
+                    <div class="content-forms">
+                        <div class="form-1">
+                            <form method="post" enctype="multipart/form-data">
+                                {% csrf_token %}
+                                <button type="submit"><i class="ti ti-file-type-xml"></i>Descargar
+                                    configuraciones</button>
+                            </form>
+                        </div>
+                        <div class="form-1">
+                            <form method="post" enctype="multipart/form-data">
+                                {% csrf_token %}
+                                <button type="submit"><i class="ti ti-file-type-xml"></i>Descargar
+                                    mensajes</button>
+                            </form>
+                        </div>
                     </div>
-
-                </form>
+                </div>
             </div>
-        </div>
-        <div class="card-init-restart">
-            <img src="" alt="">
-            <div class="card-title">Inicializar</div>
-            <div class="content-btn-restart">
-                <form action="" method="get" class="restart" enctype="multipart/form-data">
-                    {% csrf_token %}
-                    <button type="submit" name="reset"><i class="fa-solid fa-arrow-rotate-right"></i>Inicializar
-                        Sistema</button>
-                </form>
+            <div class="content-top">
+                <span class="title-init">Reiniciar el Sistema</span>
+                <div class="content-i-form">
+                    <div class="card-title">
+                        <i class="ti ti-analyze-filled"></i>
+                        <!-- <span>Configuración</span> -->
+                    </div>
+                    <div class="form">
+                        <form method="get" enctype="multipart/form-data">
+                            {% csrf_token %}
+                            <button type="submit" class="btn-init" name="reset"><i
+                                    class="ti ti-refresh"></i>Inicializar</button>
+
+                        </form>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
 </div>
+{% endblock %}
+{% block scripts %}
+<script src="{% static 'js/fileinputs.js' %}"></script>
 {% endblock %}
