@@ -18,7 +18,7 @@ class Write:
                 )
         return users_date
 
-    def write_resume(self, ruta, list_data: list):
+    def write_resume(self, list_data: list):
         date_users = self.group_dates(list_data)
         # print(date_users)
         root = ET.Element("MENSAJES_RECIBIDOS")
@@ -34,8 +34,9 @@ class Write:
             hash_in.text = f"{value.hash}"
 
         xmlstr = minidom.parseString(ET.tostring(root)).toprettyxml(indent="    ")
-        with open(ruta, "w", encoding="utf-8") as f:
-            f.write(xmlstr)
+        return xmlstr
+        # with open(ruta, "w", encoding="utf-8") as f:
+        #     f.write(xmlstr)
 
     def write_resume_confif(self, ruta, list_data: dict):
         root = ET.Element("CONFIG_RECIBIDA")

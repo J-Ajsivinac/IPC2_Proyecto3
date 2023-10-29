@@ -23,7 +23,7 @@ class MainBackend:
         return self.read.read_config(xml_data, self.dict_conf, self.build)
 
     def load_messages(self, xml_data):
-        self.read.load_msg(xml_data, self.dict_conf, self.messages)
+        return self.read.load_msg(xml_data, self.dict_conf, self.messages)
 
     def return_hashtags(self, start, end):
         return self.ctrl.filter_hashtag(start, end, self.messages)

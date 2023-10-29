@@ -29,8 +29,8 @@ def charge():
 @app.route("/grabarMensajes", methods=["POST"])
 def charge_msg():
     xml_data = request.data
-    origin_data.load_messages(xml_data)
-    return {"message": "Archivo grabado exitosamente"}
+    response = origin_data.load_messages(xml_data)
+    return {"message": "Archivo grabado exitosamente", "data": response}
 
 
 @app.route("/devolverHastags", methods=["POST"])
@@ -63,12 +63,10 @@ def restet():
     return {"mensaje": "Sistema inicializado"}
 
 
-@app.route("/SalidaMensajes", methods=["POST"])
+@app.route("/SalidaMensajes")
 def create_msg():
-    req = request.json["root"]
-    root = os.path.join(req, "resumenMensajes.xml")
     write = Write()
-    write.write_resume(root, origin_data.messages)
+    write.write_resume(origin_data.messages)
     return {"mensaje": "Archivo grabado exitosamente"}
 
 

@@ -81,7 +81,6 @@ class Read:
 
     def write_file_config(self):
         _root_file = os.path.dirname(os.path.abspath(__file__))
-        # add_data = ET.fromstring(data)
         db_config = os.path.join(_root_file, "DB", "config.xml").replace("\\", "\\\\")
         try:
             tree = ET.parse(db_config)
@@ -168,7 +167,7 @@ class Read:
         return string
 
     def load_msg(self, content, conf: dict, list_msg: list):
-        # db_msg = self.write_file_messages()
+        temp = []
         db_root_file = self.write_file_messages()
         db_tree = ET.parse(db_root_file)
         db_root = db_tree.getroot()
@@ -179,6 +178,8 @@ class Read:
         pattern_hastag = r"#([A-Za-z0-9_]+)#"
         # mensaje = None
         # mensajes = db_root.find("datos")
+        read = Write()
+
         for msg in root.findall("MENSAJE"):
             search_date = []
             search_users = []
@@ -188,7 +189,8 @@ class Read:
             msg_read = self.to_unicode(msg_read)
 
             mensaje = ET.SubElement(db_root, "mensaje")
-
+            if re.search(patter_date, date_read) is None:
+                continue
             search_date.append(re.search(patter_date, date_read).group(0))
             search_users.extend(re.findall(patter_users, msg_read))
             search_hastag.extend(re.findall(pattern_hastag, msg_read))
@@ -202,19 +204,21 @@ class Read:
             usuarios = ET.SubElement(mensaje, "usuarios")
             for user in search_users:
                 usuario = ET.SubElement(usuarios, "usuario")
-                usuario.text = f"{user}"
+                usuario.text = f"@{user}"
             hashtags = ET.SubElement(mensaje, "hashtags")
             for h in search_hastag:
                 hashtag = ET.SubElement(hashtags, "hashtag")
-                hashtag.text = f"{h}"
+                hashtag.text = f"#{h}#"
             # tipo.text = f"{type_m}"
 
             list_msg.append(
                 Message(search_date[0], search_users, search_hastag, type_m)
             )
+            temp.append(Message(search_date[0], search_users, search_hastag, type_m))
 
             if mensaje is None:
                 return
+
             xmlstr = minidom.parseString(ET.tostring(db_root)).toprettyxml(
                 indent="    "
             )
@@ -223,6 +227,8 @@ class Read:
             with open(db_root_file, "w+", encoding="utf-8") as f:
                 f.write(xmlstr)
         # print(search_date, search_users, search_hastag)
+        xml1 = read.write_resume(temp)
+        return xml1
 
     def verify_dup(self, value, list_w: list):
         if value in list_w:
