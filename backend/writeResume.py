@@ -49,5 +49,6 @@ class Write:
         recha_n.text = f'{len(list_data["rechazar_negativos"])}'
 
         xmlstr = minidom.parseString(ET.tostring(root)).toprettyxml(indent="    ")
-        with open(ruta, "w", encoding="utf-8") as f:
-            f.write(xmlstr)
+        return xmlstr
+        # with open(ruta, "w", encoding="utf-8") as f:
+        #     f.write(xmlstr)

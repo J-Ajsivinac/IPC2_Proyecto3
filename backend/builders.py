@@ -20,7 +20,7 @@ class MainBackend:
         self.read.load_initial_msgs(self.messages)
 
     def load_config(self, xml_data):
-        self.read.read_config(xml_data, self.dict_conf, self.build)
+        return self.read.read_config(xml_data, self.dict_conf, self.build)
 
     def load_messages(self, xml_data):
         self.read.load_msg(xml_data, self.dict_conf, self.messages)

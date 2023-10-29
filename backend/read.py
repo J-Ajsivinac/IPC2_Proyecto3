@@ -4,12 +4,19 @@ from builders import Config
 from unidecode import unidecode
 from controller import Controller
 from builders import Message
+from writeResume import Write
 import os
 import re
 
 
 class Read:
     def read_config(self, content, conf: dict, Config):
+        current = {
+            "sentimientos_positivos": set(),
+            "sentimientos_negativos": set(),
+            "rechazar_positivos": set(),
+            "rechazar_negativos": set(),
+        }
         db_root_file = self.write_file_config()
         db_tree = ET.parse(db_root_file)
         db_root = db_tree.getroot()
@@ -40,6 +47,7 @@ class Read:
                 if not self.verify_dup(text, conf[response]):
                     db_first.append(new_element)
                 conf[response].add(text)
+                current[response].add(text)
         if second is not None:
             db_second = root.find(second)
             if db_second is not None:
@@ -57,6 +65,10 @@ class Read:
                     if not self.verify_dup(text, conf[response]):
                         db_second.append(new_element)
                     conf[response].add(text)
+                    current[response].add(text)
+
+        write = Write()
+        xmlstr1 = write.write_resume_confif(root, current)
 
         xmlstr = minidom.parseString(ET.tostring(db_root)).toprettyxml(indent="    ")
 
@@ -64,6 +76,8 @@ class Read:
         xmlstr = "\n".join([line for line in xmlstr.split("\n") if line.strip()])
         with open(db_root_file, "w", encoding="utf-8") as f:
             f.write(xmlstr)
+
+        return xmlstr1
 
     def write_file_config(self):
         _root_file = os.path.dirname(os.path.abspath(__file__))

@@ -1,25 +1,2 @@
 <?xml version="1.0" ?>
-<datos>
-    <mensaje>
-        <tipo>neutro</tipo>
-        <fecha>15/01/2023</fecha>
-        <usuarios>
-            <usuario>estudiante01</usuario>
-            <usuario>estudiante02</usuario>
-        </usuarios>
-        <hashtags>
-            <hashtag>bienvenidausac</hashtag>
-        </hashtags>
-    </mensaje>
-    <mensaje>
-        <tipo>neutro</tipo>
-        <fecha>16/01/2023</fecha>
-        <usuarios>
-            <usuario>estudiante01</usuario>
-            <usuario>estudiante02</usuario>
-        </usuarios>
-        <hashtags>
-            <hashtag>saludousac</hashtag>
-        </hashtags>
-    </mensaje>
-</datos>
+<datos/>

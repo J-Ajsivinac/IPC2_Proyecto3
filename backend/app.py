@@ -22,8 +22,8 @@ def ping():
 @app.route("/grabarConfiguracion", methods=["POST"])
 def charge():
     xml_data = request.data
-    origin_data.load_config(xml_data)
-    return {"mensaje": "XML procesado correctamente"}
+    response = origin_data.load_config(xml_data)
+    return {"mensaje": "XML procesado correctamente", "data": response}
 
 
 @app.route("/grabarMensajes", methods=["POST"])
