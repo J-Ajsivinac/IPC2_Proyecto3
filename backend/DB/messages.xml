@@ -1,2 +1,14 @@
 <?xml version="1.0" ?>
-<datos/>
+<datos>
+    <mensaje>
+        <tipo>neutro</tipo>
+        <fecha>25/01/2023</fecha>
+        <usuarios>
+            <usuario>@bueno_xd</usuario>
+            <usuario>@estudiante02</usuario>
+        </usuarios>
+        <hashtags>
+            <hashtag>#xd#</hashtag>
+        </hashtags>
+    </mensaje>
+</datos>

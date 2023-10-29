@@ -193,7 +193,10 @@ class Read:
                 continue
             search_date.append(re.search(patter_date, date_read).group(0))
             search_users.extend(re.findall(patter_users, msg_read))
+            search_users = ["@" + user for user in search_users]
+
             search_hastag.extend(re.findall(pattern_hastag, msg_read))
+            search_hastag = ["#" + hashtag + "#" for hashtag in search_hastag]
             msg_read = msg_read.lower()
             type_m = Controller.calc_sent(Controller, msg_read, conf)
 
@@ -204,11 +207,11 @@ class Read:
             usuarios = ET.SubElement(mensaje, "usuarios")
             for user in search_users:
                 usuario = ET.SubElement(usuarios, "usuario")
-                usuario.text = f"@{user}"
+                usuario.text = f"{user}"
             hashtags = ET.SubElement(mensaje, "hashtags")
             for h in search_hastag:
                 hashtag = ET.SubElement(hashtags, "hashtag")
-                hashtag.text = f"#{h}#"
+                hashtag.text = f"{h}"
             # tipo.text = f"{type_m}"
 
             list_msg.append(
@@ -217,7 +220,7 @@ class Read:
             temp.append(Message(search_date[0], search_users, search_hastag, type_m))
 
             if mensaje is None:
-                return
+                continue
 
             xmlstr = minidom.parseString(ET.tostring(db_root)).toprettyxml(
                 indent="    "

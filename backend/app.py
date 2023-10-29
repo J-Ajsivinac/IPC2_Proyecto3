@@ -33,7 +33,7 @@ def charge_msg():
     return {"message": "Archivo grabado exitosamente", "data": response}
 
 
-@app.route("/devolverHastags", methods=["POST"])
+@app.route("/devolverHashtags", methods=["POST"])
 def get_hastags():
     start = request.json["start"]
     end = request.json["end"]

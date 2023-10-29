@@ -71,6 +71,7 @@ class Controller:
             if count is not None:
                 dictionary[v.date] = count
         response = {}
+        print(dictionary)
         if len(dictionary) == 0:
             response["type_r"] = 0
             response["message"] = "No se encontradon datos"
@@ -82,6 +83,7 @@ class Controller:
             response["response"] = dictionary
             response["data_graph"] = response_graph["graph_data"]
         response_return = self.formatter_response(response)
+        print(response_return)
         return response_return
 
     def filter_users(self, start, end, list_data: list):
@@ -193,6 +195,7 @@ class Controller:
         count_posit = 0
         count_neg = 0
         count_n = 0
+        # print(list_u)
         for value in list_u:
             results = {}
             b_date = value.date
@@ -206,10 +209,11 @@ class Controller:
                             count_posit += 1
                         elif v.type == lbl_negative:
                             count_neg += 1
-                        else:
+                        elif v.type == "neutro":
                             count_n += 1
             results["positivo"] = count_posit
             results["negativo"] = count_neg
+            # print(count_n)
             results["neutro"] = count_n
             response = {}
             response["graph_data"] = results
@@ -221,7 +225,7 @@ class Controller:
         for msg in list_data:
             date = msg.date
             if date not in dates_u:
-                dates_u.add(msg)
+                dates_u.add(date)
                 lista_u.append(msg)
         return lista_u
 
