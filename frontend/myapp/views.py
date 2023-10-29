@@ -22,25 +22,40 @@ def index(request):
             return redirect(f"{reverse('index')}?exito={exito}")
         exito = request.GET.get("exito", None)
         exito = exito == "True" if exito is not None else None
-        return render(request, "index.html", {"exito": exito})
+        return render(request, "index.html", {"exito": exito, "data": ""})
     elif request.method == "POST":
         # cargar diccionario de  configuraciones
         if "file-1" in request.FILES:
             exito = None
-
+            response_api = None
             try:
                 archivo = request.FILES["file-1"]
                 contenido = archivo.read()
                 # print(contenido)
                 api_url = "http://127.0.0.1:3020/grabarConfiguracion"
                 response = requests.post(api_url, data=contenido, timeout=100)
+                response_api = response.json()
+                # print(response_api["data"])
                 exito = response.status_code == 200
+                return render(
+                    request,
+                    "index.html",
+                    {
+                        "exito": exito,
+                        "data": str(response_api["data"]),
+                    },
+                )
             except Exception as _:
                 exito = False
+                return render(
+                    request,
+                    "index.html",
+                    {
+                        "exito": exito,
+                        "data": "",
+                    },
+                )
 
-            # request.method = "GET"
-
-            return redirect(f"{reverse('index')}?exito={exito}")
         # cargar mensajes para analizar
         elif "file-2" in request.FILES:
             exito = None
