@@ -65,11 +65,26 @@ def index(request):
                 contenido = archivo.read()
                 api_url = "http://127.0.0.1:3020/grabarMensajes"
                 response = requests.post(api_url, data=contenido, timeout=1000)
+                response_api = response.json()
                 exito = response.status_code == 200
+                return render(
+                    request,
+                    "index.html",
+                    {
+                        "exito": exito,
+                        "data": str(response_api["data"]),
+                    },
+                )
             except Exception as _:
                 exito = False
-
-            return redirect(f"{reverse('index')}?exito={exito}")
+                return render(
+                    request,
+                    "index.html",
+                    {
+                        "exito": exito,
+                        "data": "",
+                    },
+                )
         # return redirect(f"{reverse('index')}?exito={exito}")
     exito = request.GET.get("exito", None)
     exito = exito == "True" if exito is not None else None
@@ -94,7 +109,7 @@ def search(request):
             api_url = ""
             try:
                 if search_by == "hashtags":
-                    api_url = "http://127.0.0.1:3020/devolverHastags"
+                    api_url = "http://127.0.0.1:3020/devolverHashtags"
                 elif search_by == "mentions":
                     api_url = "http://127.0.0.1:3020/devolverMenciones"
                 elif search_by == "sentiments":

@@ -182,8 +182,8 @@ class Read:
 
         for msg in root.findall("MENSAJE"):
             search_date = []
-            search_users = []
-            search_hastag = []
+            search_users = set()
+            search_hastag = set()
             date_read = msg.findtext("FECHA")
             msg_read = msg.findtext("TEXTO")
             msg_read = self.to_unicode(msg_read)
@@ -192,10 +192,10 @@ class Read:
             if re.search(patter_date, date_read) is None:
                 continue
             search_date.append(re.search(patter_date, date_read).group(0))
-            search_users.extend(re.findall(patter_users, msg_read))
+            search_users.update(re.findall(patter_users, msg_read))
             search_users = ["@" + user for user in search_users]
 
-            search_hastag.extend(re.findall(pattern_hastag, msg_read))
+            search_hastag.update(re.findall(pattern_hastag, msg_read))
             search_hastag = ["#" + hashtag + "#" for hashtag in search_hastag]
             msg_read = msg_read.lower()
             type_m = Controller.calc_sent(Controller, msg_read, conf)
@@ -214,10 +214,12 @@ class Read:
                 hashtag.text = f"{h}"
             # tipo.text = f"{type_m}"
 
-            list_msg.append(
-                Message(search_date[0], search_users, search_hastag, type_m)
-            )
-            temp.append(Message(search_date[0], search_users, search_hastag, type_m))
+            message = Message(search_date[0], set(), set(), type_m)
+            message.users.update(search_users)
+            message.hash.update(search_hastag)
+
+            list_msg.append(message)
+            temp.append(message)
 
             if mensaje is None:
                 continue
