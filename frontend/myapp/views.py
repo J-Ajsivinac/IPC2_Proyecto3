@@ -4,6 +4,8 @@ from django.views.decorators.http import require_POST
 from django.urls import reverse
 import requests
 import json
+import os
+import xml.etree.ElementTree as ET
 
 
 # Create your views here.
@@ -33,18 +35,38 @@ def index(request):
                 contenido = archivo.read()
                 # print(contenido)
                 api_url = "http://127.0.0.1:3020/grabarConfiguracion"
-                response = requests.post(api_url, data=contenido, timeout=100)
+                response = requests.post(api_url, data=contenido, timeout=300)
                 response_api = response.json()
                 # print(response_api["data"])
                 exito = response.status_code == 200
-                return render(
-                    request,
-                    "index.html",
-                    {
-                        "exito": exito,
-                        "data": str(response_api["data"]),
-                    },
-                )
+                if exito:
+                    current_directory = os.path.dirname(__file__)
+                    parent_directory = os.path.dirname(current_directory)
+                    project_directory = os.path.dirname(parent_directory)
+                    desired_directory = os.path.join(project_directory, "resumenes")
+                    if not os.path.exists(desired_directory):
+                        os.makedirs(desired_directory)
+                    save = os.path.join(desired_directory, "resumenConfig.xml")
+                    # root = ET.fromstring(str(response_api["data"]))
+                    with open(save, "w", encoding="utf-8") as f:
+                        f.write(str(response_api["data"]))
+                    return render(
+                        request,
+                        "index.html",
+                        {
+                            "exito": exito,
+                            "data": str(response_api["data"]),
+                        },
+                    )
+                else:
+                    return render(
+                        request,
+                        "index.html",
+                        {
+                            "exito": exito,
+                            "data": "",
+                        },
+                    )
             except Exception as _:
                 exito = False
                 return render(
@@ -67,12 +89,31 @@ def index(request):
                 response = requests.post(api_url, data=contenido, timeout=1000)
                 response_api = response.json()
                 exito = response.status_code == 200
+                if exito:
+                    current_directory = os.path.dirname(__file__)
+                    parent_directory = os.path.dirname(current_directory)
+                    project_directory = os.path.dirname(parent_directory)
+                    desired_directory = os.path.join(project_directory, "resumenes")
+                    if not os.path.exists(desired_directory):
+                        os.makedirs(desired_directory)
+                    save = os.path.join(desired_directory, "resumenMensajes.xml")
+                    # root = ET.fromstring(str(response_api["data"]))
+                    with open(save, "w", encoding="utf-8") as f:
+                        f.write(str(response_api["data"]))
+                    return render(
+                        request,
+                        "index.html",
+                        {
+                            "exito": exito,
+                            "data": str(response_api["data"]),
+                        },
+                    )
                 return render(
                     request,
                     "index.html",
                     {
                         "exito": exito,
-                        "data": str(response_api["data"]),
+                        "data": "",
                     },
                 )
             except Exception as _:

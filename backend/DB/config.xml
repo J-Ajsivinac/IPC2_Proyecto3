@@ -2,12 +2,48 @@
 <diccionario>
     <sentimientos_positivos>
         <palabra>god</palabra>
+        <palabra>bueno</palabra>
+        <palabra>excelente</palabra>
+        <palabra>cool</palabra>
+        <palabra>satisfecho</palabra>
+        <palabra>feliz</palabra>
+        <palabra>contento</palabra>
+        <palabra>felicidad</palabra>
+        <palabra>exito</palabra>
+        <palabra>alegre</palabra>
+        <palabra>dichoso</palabra>
+        <palabra>radiante</palabra>
+        <palabra>genial</palabra>
+        <palabra>optimista</palabra>
+        <palabra>encantador</palabra>
+        <palabra>glorioso</palabra>
+        <palabra>exultante</palabra>
+        <palabra>euforico</palabra>
+        <palabra>estupendo</palabra>
+        <palabra>jubiloso</palabra>
+        <palabra>triunfante</palabra>
     </sentimientos_positivos>
     <sentimientos_negativos>
         <palabra>malo</palabra>
         <palabra>pesimo</palabra>
         <palabra>triste</palabra>
         <palabra>molesto</palabra>
+        <palabra>decepcionado</palabra>
+        <palabra>enojo</palabra>
+        <palabra>desgraciado</palabra>
+        <palabra>frustracion</palabra>
+        <palabra>desilusion</palabra>
+        <palabra>horrible</palabra>
+        <palabra>desastroso</palabra>
+        <palabra>amargado</palabra>
+        <palabra>pesadumbre</palabra>
+        <palabra>melancolia</palabra>
+        <palabra>abrumado</palabra>
+        <palabra>hostilidad</palabra>
+        <palabra>derrota</palabra>
+        <palabra>desesperanza</palabra>
+        <palabra>insoportable</palabra>
+        <palabra>agobiante</palabra>
     </sentimientos_negativos>
     <rechazar_positivos/>
     <rechazar_negativos>

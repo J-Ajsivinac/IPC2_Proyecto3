@@ -10,6 +10,11 @@
     defer></script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lato-font/3.0.0/css/lato-font.min.css">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css">
+<!-- <script src="https://cdn.jsdelivr.net/npm/chart.js"></script> -->
+<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.5.3/jspdf.debug.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.5.0-beta4/html2canvas.min.js"></script>
+<script src="https://unpkg.com/html2pdf.js@0.10.0/dist/html2pdf.bundle.min.js"></script> -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.2/html2pdf.bundle.min.js"></script>
 {% endblock %}
 {% block content %}
 <div class="content1">
@@ -50,9 +55,8 @@
                 {% if data is not None %}
                 {% if type_r != 0 %}
                 <div class="content-button-d">
-                    <form action="">
-                        <button id="savePDF" type="submit"><i class="ti ti-file-download"></i>Descargar</input>
-                    </form>
+
+                    <button id="savePDFTable" type="submit"><i class="ti ti-file-download"></i>Descargar</input>
                 </div>
                 {% endif %}
                 {% endif %}
@@ -63,7 +67,7 @@
                 <span>No se encontraron Datos</span>
             </div>
             {% else %}
-            <div class="content-graph-results">
+            <div class="content-graph-results" id="contentG">
                 {% for entry in data %}
                 <div class="content-date-results">
                     <!-- <span class="title-date">21/03/2023</span> -->
@@ -104,9 +108,7 @@
                 {% if data is not None %}
                 {% if type_r != 0 %}
                 <div class="content-button-d">
-                    <form action="">
-                        <button id="savePDF" type="submit"><i class="ti ti-file-download"></i>Descargar</input>
-                    </form>
+                    <button id="savePDFChart" type="submit"><i class="ti ti-file-download"></i>Descargar</input>
                 </div>
                 {% endif %}
                 {% endif %}
@@ -118,7 +120,7 @@
                 <span>No se encontraron Datos</span>
             </div>
             {% else %}
-            <div class="content-chart">
+            <div class="content-chart" id="content-chart">
                 <canvas id="myChart"></canvas>
             </div>
             {% endif %}
@@ -147,10 +149,7 @@
     Chart.defaults.font.family = "Poppins"
     var graphData = JSON.parse('{{ graph_data|escapejs }}');
     var keys = Object.keys(graphData.data_graph);
-    // var keys = ["positivo", "negativo", "neutro", "irrelevante", "no clasificado"]
     var values = Object.values(graphData.data_graph);
-    // var values = [10, 20, 30, 40, 50]
-    // console.log(data_graph)
     const ctx = document.getElementById('myChart');
 
     new Chart(ctx, {
@@ -168,13 +167,6 @@
                     "#de8afa",
 
                 ],
-                // hoverBackgroundColor: [
-                //     'rgba(209, 71, 83, 0.5)',
-                //     'rgba(209, 116, 82, 0.5)',
-                //     'rgba(140, 209, 92, 0.5)',
-                //     'rgba(50, 209, 178, 0.5)',
-                //     'rgba(202, 61, 209, 0.5)',
-                // ],
                 borderRadius: 5
             }]
         },
@@ -219,6 +211,41 @@
         }
 
     });
+</script>
+<script>
+    document.getElementById("savePDFChart").addEventListener("click", function () {
+        console.log("click");
+        var element = document.getElementById('myChart');
+
+        // Crea una instancia de html2pdf y pasa el elemento como argumento.
+        var opt = {
+            margin: 4,
+            filename: 'myChart.pdf',
+            image: { type: 'jpeg', quality: 0.9999 },
+            html2canvas: { scale: 10 },
+            jsPDF: { unit: 'mm', format: [70, 130], orientation: 'landscape' }
+        };
+        html2pdf().set(opt).from(element).save();
+    });
+
+</script>
+
+<script>
+    document.getElementById("savePDFTable").addEventListener("click", function () {
+        console.log("click");
+        var element1 = document.getElementById('contentG');
+        console.log(element1.offsetWidth, element1.offsetHeight)
+        // Crea una instancia de html2pdf y pasa el elemento como argumento.
+        var opt1 = {
+            margin: 4,
+            filename: 'table.pdf',
+            image: { type: 'jpeg', quality: 0.9999 },
+            html2canvas: { scale: 10 },
+            jsPDF: { unit: 'mm', format: [element1.offsetWidth, element1.offsetHeight], orientation: 'portrait' }
+        };
+        html2pdf().set(opt1).from(element1).save();
+    });
+
 </script>
 
 {% endblock %}
