@@ -9,6 +9,7 @@ https://cdn.jsdelivr.net/npm/ace-builds@1.31.0/src-min-noconflict/ace.min.js
 <link href="
 https://cdn.jsdelivr.net/npm/ace-builds@1.31.0/css/ace.min.css
 " rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
 <style>
     .ace-one-dark .ace_print-margin {
         /* visibility: hidden; */
@@ -23,17 +24,37 @@ https://cdn.jsdelivr.net/npm/ace-builds@1.31.0/css/ace.min.css
 {% if exito %}
 <script>
     Swal.fire(
-        'Archivos correctos',
-        'That thing is still around?',
-        'succes'
+        {
+            title: 'Datos Procesados',
+            color: "#fff",
+            html: 'Se ha cargado la configuración<br>se genero el archivo de salida',
+            imageUrl: "{% static 'img/succes.svg' %}",
+            imageWidth: 120,
+            imageHeight: 120,
+            confirmButtonText: 'Aceptar',
+            background: '#232529',
+            showClass: {
+                popup: 'animate__bounceIn'
+            },
+        }
     )
 </script>
 {% else %}
 <script>
     Swal.fire(
-        'Error',
-        'That thing is still around?',
-        'error'
+        {
+            title: 'Error',
+            color: "#fff",
+            html: 'No se completo la acción <br>intente de nuevo',
+            imageUrl: "{% static 'img/error.svg' %}",
+            imageWidth: 120,
+            imageHeight: 120,
+            confirmButtonText: 'Aceptar',
+            background: '#232529',
+            showClass: {
+                popup: 'animate__bounceIn'
+            },
+        }
     )
 </script>
 {% endif %}
