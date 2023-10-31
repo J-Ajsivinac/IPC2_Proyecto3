@@ -16,6 +16,7 @@ https://cdn.jsdelivr.net/npm/ace-builds@1.31.0/css/ace.min.css
         background: #44475a;
     }
 </style>
+
 {% endblock %}
 {% block content %}
 
@@ -27,7 +28,7 @@ https://cdn.jsdelivr.net/npm/ace-builds@1.31.0/css/ace.min.css
         {
             title: 'Datos Procesados',
             color: "#fff",
-            html: 'Se ha cargado la configuración<br>se genero el archivo de salida',
+            html: 'Se ha cargado el archivo<br>y se genero el archivo de salida',
             imageUrl: "{% static 'img/succes.svg' %}",
             imageWidth: 120,
             imageHeight: 120,
@@ -149,6 +150,10 @@ https://cdn.jsdelivr.net/npm/ace-builds@1.31.0/css/ace.min.css
 </div>
 {% endblock %}
 {% block scripts %}
+<script>
+    let homebtn = document.querySelector(".btnhome");
+    homebtn.classList.add("current");
+</script>
 <script src="{% static 'js/fileinputs.js' %}"></script>
 <script>
     var editor = ace.edit("editor");

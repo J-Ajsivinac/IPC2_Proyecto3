@@ -1,7 +1,7 @@
 /*! name: @uvarov.frontend/vanilla-calendar | url: https://github.com/uvarov-frontend/vanilla-calendar */
 [data-calendar-theme=dark].vanilla-calendar {
     --tw-bg-opacity: 1;
-    background-color: rgb(15 23 42 / var(--tw-bg-opacity));
+    background-color: #111315;
     z-index: 20;
 }
 
@@ -41,14 +41,14 @@
 [data-calendar-theme=dark] .vanilla-calendar-months__month,
 [data-calendar-theme=dark] .vanilla-calendar-years__year {
     --tw-bg-opacity: 1;
-    background-color: rgb(15 23 42 / var(--tw-bg-opacity));
+    background-color: #23252a;
     color: #fff
 }
 
 [data-calendar-theme=dark] .vanilla-calendar-months__month:hover,
 [data-calendar-theme=dark] .vanilla-calendar-years__year:hover {
     --tw-bg-opacity: 1;
-    background-color: rgb(30 41 59 / var(--tw-bg-opacity))
+    background-color: #33363D
 }
 
 [data-calendar-theme=dark] .vanilla-calendar-months__month.vanilla-calendar-months__month_selected,
@@ -56,7 +56,7 @@
 [data-calendar-theme=dark] .vanilla-calendar-months__month.vanilla-calendar-months__month_selected:hover,
 [data-calendar-theme=dark] .vanilla-calendar-years__year.vanilla-calendar-years__year_selected:hover {
     --tw-bg-opacity: 1;
-    background-color: rgb(100 116 139 / var(--tw-bg-opacity));
+    background-color: #434B52;
     color: #fff
 }
 
@@ -90,7 +90,7 @@
 
 [data-calendar-theme=dark] .vanilla-calendar-day__btn {
     --tw-bg-opacity: 1;
-    background-color: rgb(15 23 42 / var(--tw-bg-opacity));
+    background-color: #111414;
     color: #94a3b8
 }
 
@@ -211,7 +211,7 @@
 [data-calendar-theme=dark] .vanilla-calendar-day__btn_holiday.vanilla-calendar-day__btn_selected.vanilla-calendar-day__btn_intermediate,
 [data-calendar-theme=dark] .vanilla-calendar-day__btn_weekend.vanilla-calendar-day__btn_selected.vanilla-calendar-day__btn_intermediate:hover,
 [data-calendar-theme=dark] .vanilla-calendar-day__btn_holiday.vanilla-calendar-day__btn_selected.vanilla-calendar-day__btn_intermediate:hover {
-    background-color: rgb(244 63 94 / var(--tw-bg-opacity));
+    background-color: #e16278;
     --tw-bg-opacity: .8;
     color: #fff
 }
@@ -245,13 +245,13 @@
 [data-calendar-theme=dark] .vanilla-calendar-day__btn_selected,
 [data-calendar-theme=dark] .vanilla-calendar-day__btn_selected:hover {
     --tw-bg-opacity: 1;
-    background-color: rgb(6 182 212 / var(--tw-bg-opacity));
+    background-color: #0860db;
     color: #fff
 }
 
 [data-calendar-theme=dark] .vanilla-calendar-day__btn_selected.vanilla-calendar-day__btn_intermediate,
 [data-calendar-theme=dark] .vanilla-calendar-day__btn_selected.vanilla-calendar-day__btn_intermediate:hover {
-    background-color: rgb(6 182 212 / var(--tw-bg-opacity));
+    background-color: #31313B;
     --tw-bg-opacity: .8;
     color: #fff
 }

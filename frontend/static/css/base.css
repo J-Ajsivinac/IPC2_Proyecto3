@@ -41,7 +41,7 @@ body {
     align-items: center;
     opacity: 0;
     pointer-events: none;
-    transition: all .5s ease;
+    /* transition: all .5s ease; */
 }
 
 .sidebar.active .logo_content .logo {
@@ -50,13 +50,14 @@ body {
 }
 
 .logo_content .logo i {
-    font-size: 28px;
+    font-size: 20px;
     margin-right: 5px;
 }
 
 .logo_content .logo .logo_name {
     font-size: 20px;
     font-weight: 400;
+    transition: all 0s;
 }
 
 .sidebar #btn {
@@ -99,7 +100,7 @@ body {
     border-radius: 6px;
     height: 35px;
     width: 122px;
-    background: #292933;
+    background: #333340;
     color: white;
     z-index: 10;
     line-height: 35px;
@@ -122,7 +123,7 @@ body {
 }
 
 .sidebar ul li a {
-    color: #fff;
+    color: #9ca2a7;
     display: flex;
     align-items: center;
     text-decoration: none;
@@ -130,6 +131,11 @@ body {
     border-radius: 10px;
     width: 50px;
     white-space: nowrap;
+}
+
+.sidebar ul li a.current {
+    color: #fff;
+    background-color: #3657ef;
 }
 
 .sidebar.active ul li a {
@@ -144,7 +150,12 @@ body {
 
 .sidebar ul li a:hover {
     color: #fff;
-    background: #554fea;
+    background: #272b30;
+}
+
+.sidebar ul li a.current:hover {
+    color: #fff;
+    background-color: #2F4CCC;
 }
 
 .sidebar ul li i {

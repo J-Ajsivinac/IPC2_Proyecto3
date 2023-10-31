@@ -139,6 +139,10 @@
 
 {% endblock %}
 {% block scripts %}
+<script>
+    let homebtn = document.querySelector(".btnsearch");
+    homebtn.classList.add("current");
+</script>
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-autocolors"></script>
 <script src="{% static 'calendar/theme.js' %}"></script>
