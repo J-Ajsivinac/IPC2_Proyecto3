@@ -52,7 +52,7 @@
 }
 
 .carnet {
-    color: #71747d;
+    color: #999ea9;
 }
 
 .content-left {
@@ -96,15 +96,15 @@
 .content-data i,
 .content-data1 i {
     font-size: 1.5rem;
-    color: #71747d;
+    color: #81858f;
     padding: 10px;
     background-color: #292933;
     border-radius: 100%;
 }
 
 i.i-small {
-    font-size: 1.8rem;
-    padding: 9px;
+    font-size: 2rem;
+    padding: 6px;
 }
 
 .content-doc {
@@ -128,4 +128,9 @@ i.i-small {
     column-gap: 10px;
     align-items: center;
     border-radius: 5px;
+    transition: background-color 0.2s ease-in-out;
+}
+
+.content-doc a:hover {
+    background-color: #413db6;
 }

@@ -12,7 +12,6 @@ https://cdn.jsdelivr.net/npm/ace-builds@1.31.0/css/ace.min.css
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
 <style>
     .ace-one-dark .ace_print-margin {
-        /* visibility: hidden; */
         background: #44475a;
     }
 </style>
@@ -66,6 +65,50 @@ https://cdn.jsdelivr.net/npm/ace-builds@1.31.0/css/ace.min.css
 </script>
 {% endif %}
 
+{% if reset is not None %}
+{% if reset %}
+<script>
+    Swal.fire(
+        {
+            title: 'Opreación Exisota',
+            color: "#fff",
+            html: 'Se Inicializo el sistema correctamente',
+            imageUrl: "{% static 'img/succes.svg' %}",
+            imageWidth: 120,
+            imageHeight: 120,
+            confirmButtonText: 'Aceptar',
+            background: '#232529',
+            showClass: {
+                popup: 'animate__bounceIn'
+            },
+        }
+    )
+</script>
+{% else %}
+<script>
+    Swal.fire(
+        {
+            title: 'Error',
+            color: "#fff",
+            html: 'No se logro inicializar el sistema correctamente',
+            imageUrl: "{% static 'img/error.svg' %}",
+            imageWidth: 120,
+            imageHeight: 120,
+            confirmButtonText: 'Aceptar',
+            background: '#232529',
+            showClass: {
+                popup: 'animate__bounceIn'
+            },
+        }
+    )
+</script>
+{% endif %}
+<script>
+    if (window.history.replaceState) {
+        window.history.replaceState({}, document.title, window.location.pathname);
+    }
+</script>
+{% endif %}
 <div class="content">
     <div class="text">Inicio</div>
     <section class="content-init">
@@ -139,10 +182,24 @@ https://cdn.jsdelivr.net/npm/ace-builds@1.31.0/css/ace.min.css
                     <i class="ti ti-clipboard-text"></i>
                     <span>Resumen</span>
                 </div>
+                {% if exito is not None %}
+                {% if exito %}
                 <div class="code-editor">
                     <div id="editor">
                     </div>
                 </div>
+                {% else %}
+                <div class="content-edit">
+                    <i class="ti ti-ban"></i>
+                    <span>No se registraron los datos</span>
+                </div>
+                {% endif %}
+                {% else %}
+                <div class="content-edit">
+                    <i class="ti ti-file-code"></i>
+                    <span>Sin cargas previas</span>
+                </div>
+                {% endif %}
             </div>
         </div>
 

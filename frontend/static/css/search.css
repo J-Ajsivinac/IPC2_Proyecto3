@@ -49,11 +49,11 @@ form.search-bar {
 }
 
 .content-results .option-group i {
-    padding: 10px;
+    padding: 9px;
     background-color: #131416;
     border-radius: 7px;
     color: #d0d0d0;
-    font-size: 1.3rem;
+    font-size: 1.4rem;
 }
 
 .options {
@@ -78,6 +78,7 @@ form.search-bar {
     border-radius: 5px;
     background-color: #1e1f23;
     color: white;
+    font-size: 0.94rem;
     box-shadow: 0 0 1em 0 rgba(0, 0, 0, 0.2);
     cursor: pointer;
     transition: background-color 0.2s ease-in-out;
@@ -93,20 +94,22 @@ form.search-bar {
     background-color: #2C2D33;
 }
 
-.options select option:focus,
-.options select option:hover {
-    background-color: red;
-}
-
-
 .options input {
     padding: 6px 5px;
-    width: 190px;
+    width: 200px;
     border: 2px solid #383b41;
     outline: none;
     border-radius: 5px;
+    font-size: 0.94rem;
     background-color: #1e1f23;
-    color: white
+    color: white;
+    transition: background-color 0.2s ease-in-out;
+}
+
+.options input:focus,
+.options input:hover {
+    outline: none;
+    background-color: #2C2D33;
 }
 
 .content-results .btn-search {
@@ -125,7 +128,13 @@ form.search-bar {
     column-gap: 7px;
     align-items: center;
     background-color: #4f50fc;
-    color: white
+    color: white;
+    transition: background-color 0.2s ease-in-out;
+    cursor: pointer;
+}
+
+.btn-search button:hover {
+    background-color: #4343D9;
 }
 
 .btn-search button i {
@@ -141,7 +150,7 @@ form.search-bar {
     display: flex;
     flex-direction: row;
     column-gap: 15px;
-    max-height: 72vh;
+    max-height: 74vh;
 }
 
 .content-cards-r {
@@ -172,7 +181,7 @@ form.search-bar {
     margin-top: 10px;
     display: flex;
     flex-direction: column;
-    border: 1px solid #383b41;
+    border: 2px solid #383b41;
     border-radius: 6px;
     margin-bottom: 5px;
 }
@@ -180,7 +189,9 @@ form.search-bar {
 .content-date-results .title-date {
     width: 100%;
     background-color: #2a2c31;
-    padding: 8px 8px;
+    color: #d4d3db;
+    font-weight: 500;
+    padding: 8px 10px;
 }
 
 .card-results {
@@ -200,7 +211,7 @@ form.search-bar {
 }
 
 .content-right i {
-    background-color: #2d3134;
+    background-color: #31343B;
     padding: 10px;
     border-radius: 10px;
     font-size: 1.3rem;
@@ -216,7 +227,7 @@ form.search-bar {
 
 .card-results .content-nums .title-nums {
     font-size: 1rem;
-    color: #d0d0d0
+    color: #9f9fa0
 }
 
 .card-results .number-result {
@@ -315,7 +326,14 @@ form.search-bar {
     border: 0px;
     font-weight: 500;
     border-radius: 6px;
-    column-gap: 5px;
+    column-gap: 8px;
+    cursor: pointer;
+    transition: background-color 0.2s ease-in-out;
+}
+
+.content-button-d button:hover {
+    background-color: #373D4D;
+    color: white;
 }
 
 .content-button-d button i {
@@ -399,4 +417,10 @@ form.search-bar {
     border-radius: 2px;
     width: 10px;
     height: 10px;
+}
+
+@media (max-height: 700px) {
+    .content-return {
+        max-height: 72vh;
+    }
 }

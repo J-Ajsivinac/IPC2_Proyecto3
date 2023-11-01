@@ -190,9 +190,6 @@ body {
     display: flex;
     flex-direction: column;
     padding: 12px 20px;
-    /* margin-top: 12px; */
-    /* border: 1px solid #36383f;
-    border-radius: 10px; */
 }
 
 .home_content .text {
@@ -232,7 +229,7 @@ main.home_content section.content-init {
     width: 100%;
     flex-direction: column;
     color: white;
-    padding: 0px 15px 10px 0px;
+    padding: 0px 0px 10px 0px;
     row-gap: 7px;
 }
 
@@ -247,7 +244,7 @@ main.home_content section.content-init .card-init {
     width: 100%;
     /* background-color: var(--panel-bg-color); */
     /* border: 2px solid #383b41; */
-    padding: 7px 15px 12px 15px;
+    padding: 7px 8px 4px 0px;
     border-radius: 10px;
     column-gap: 16px;
 }
@@ -340,14 +337,25 @@ main.home_content section.content-init .card-init {
     background-color: #554fea;
     font-size: 16px;
     border: none;
-
+    cursor: pointer;
     color: white;
     padding: 0.5rem 1.25rem;
     border-radius: 6px;
+    transition: background-color 0.2s ease-in-out;
+}
+
+.content-i-form .form form button:hover {
+    background-color: #413db6;
 }
 
 .content-i-form .form form button.btn-init {
     background-color: #fe9378;
+    color: #302821;
+    font-weight: 500;
+}
+
+.content-i-form .form form button.btn-init:hover {
+    background-color: #d67b64;
     color: #302821;
     font-weight: 500;
 }
@@ -431,6 +439,7 @@ main.home_content section.content-init .card-init-restart {
 .inputfile-1+label {
     color: #fff;
     background-color: #2a314b;
+    transition: all 0.2s ease-in-out;
 }
 
 .inputfile-1:focus+label,
@@ -446,6 +455,20 @@ main.home_content section.content-init .card-init-restart {
     margin-top: 10px;
     /* background-color: #292933; */
     height: 46vh;
+}
+
+.content-edit {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: 10px;
+    height: 46vh;
+    row-gap: 10px;
+}
+
+.content-edit i {
+    font-size: 2.4rem;
 }
 
 
@@ -497,6 +520,10 @@ main.home_content section.content-init .card-init-restart {
 
 @media (max-height: 700px) {
     .code-editor {
+        height: 39vh;
+    }
+
+    .content-edit {
         height: 39vh;
     }
 }

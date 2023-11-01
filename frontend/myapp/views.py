@@ -21,7 +21,13 @@ def index(request):
             except Exception as _:
                 exito = False
                 print(exito, "---")
-            return redirect(f"{reverse('index')}?exito={exito}")
+            return render(
+                request,
+                "index.html",
+                {
+                    "reset": exito,
+                },
+            )
         exito = request.GET.get("exito", None)
         exito = exito == "True" if exito is not None else None
         return render(request, "index.html", {"exito": exito, "data": ""})
