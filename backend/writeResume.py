@@ -19,6 +19,7 @@ class Write:
             new_hashtags = [
                 hashtag for hashtag in hashtags if hashtag not in users_date[date].hash
             ]
+            print(new_hashtags)
             users_date[date].users.update(new_users)
             users_date[date].hash.update(new_hashtags)
             users_date[date].type += 1
@@ -27,7 +28,7 @@ class Write:
 
     def write_resume(self, list_data: list):
         date_users = self.group_dates(list_data)
-        print(date_users)
+        # print(date_users)
         root = ET.Element("MENSAJES_RECIBIDOS")
 
         for _, value in date_users.items():

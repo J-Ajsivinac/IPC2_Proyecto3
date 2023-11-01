@@ -299,11 +299,10 @@ form.search-bar {
     display: flex;
     flex-direction: column;
     width: 100%;
-    height: 100%;
+    height: 85%;
     margin-top: 10px;
     row-gap: 10px;
     /* background-color: #404557; */
-    justify-content: center;
 }
 
 .content-button-d button {
@@ -329,4 +328,75 @@ form.search-bar {
     width: 100%;
     border-radius: 10px;
     padding: 7px;
+}
+
+#customLegend {
+    /* background-color: red; */
+    display: flex;
+    height: 100%;
+    padding-left: 5px;
+    /* background-color: red; */
+    overflow-y: auto;
+}
+
+#customLegend::-webkit-scrollbar {
+    width: 0.5rem;
+}
+
+#customLegend::-webkit-scrollbar-track {
+    background: #131416;
+}
+
+#customLegend::-webkit-scrollbar-thumb {
+    background: #404557;
+    border-radius: 0.2rem;
+}
+
+#customLegend ul {
+    max-height: 100%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    margin: 0;
+    padding: 0;
+    column-gap: 15px;
+    align-content: flex-start;
+}
+
+#customLegend ul li {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    flex-direction: row;
+    margin: 7px 0px;
+    line-height: 12px;
+    /* height: 20px; */
+}
+
+#customLegend ul li span {
+    display: inline-block;
+    height: 20px;
+    width: 20px;
+    margin-right: 10px;
+    border-radius: 4px;
+    transition: all 0.2s ease-in-out;
+}
+
+#customLegend ul li p {
+    margin: 0;
+    padding: 0;
+    transition: 0.2s ease-in-out;
+}
+
+#customLegend ul li.fade p {
+    margin: 0;
+    padding: 0;
+    color: rgba(102, 102, 102, 1);
+}
+
+#customLegend ul li.fade span {
+    /* background-color: rgba(0, 0, 0, 0.5); */
+    border-radius: 2px;
+    width: 10px;
+    height: 10px;
 }

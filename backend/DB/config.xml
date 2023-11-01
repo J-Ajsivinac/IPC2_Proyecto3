@@ -1,7 +1,6 @@
 <?xml version="1.0" ?>
 <diccionario>
     <sentimientos_positivos>
-        <palabra>god</palabra>
         <palabra>bueno</palabra>
         <palabra>excelente</palabra>
         <palabra>cool</palabra>
@@ -46,8 +45,5 @@
         <palabra>agobiante</palabra>
     </sentimientos_negativos>
     <rechazar_positivos/>
-    <rechazar_negativos>
-        <palabra>god</palabra>
-        <palabra>enojo</palabra>
-    </rechazar_negativos>
+    <rechazar_negativos/>
 </diccionario>

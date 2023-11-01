@@ -63,8 +63,9 @@
             </div>
             {% if data is not None %}
             {% if type_r == 0 %}
-            <div class="content-date-results content-no-data">
-                <span>No se encontraron Datos</span>
+            <div class="content-no-data">
+                <i class="ti ti-ban"></i>
+                <span>Sin resultados Disponibles</span>
             </div>
             {% else %}
             <div class="content-graph-results" id="contentG">
@@ -117,7 +118,8 @@
             {% if data is not None %}
             {% if type_r == 0 %}
             <div class="content-no-data">
-                <span>No se encontraron Datos</span>
+                <i class="ti ti-ban"></i>
+                <span>Sin resultados Disponibles</span>
             </div>
             {% else %}
             <div class="content-chart" id="content-chart">
@@ -152,27 +154,30 @@
     Chart.defaults.font.size = 15;
     Chart.defaults.font.family = "Poppins"
     var graphData = JSON.parse('{{ graph_data|escapejs }}');
-    var keys = Object.keys(graphData.data_graph);
-    var values = Object.values(graphData.data_graph);
+    const keys = Object.keys(graphData.data_graph);
+    const values = Object.values(graphData.data_graph);
     const ctx = document.getElementById('myChart');
 
-    new Chart(ctx, {
+    const customColors = [
+        "#5f6a88",
+        "#3abbfc",
+        "#a6dffc",
+        "#a78dfb",
+        "#de8afa"
+    ];
+    // console.log(keys, values)
+    const data = keys.map((label, index) => ({
+        label: label,
+        data: [values[index]],
+        borderRadius: 5,
+        backgroundColor: customColors[index % customColors.length]
+    }));
+
+    const config = {
         type: 'bar',
         data: {
-            labels: keys,
-            datasets: [{
-                label: '# de mensajes',
-                data: values,
-                backgroundColor: [
-                    "#5f6a88",
-                    "#3abbfc",
-                    "#a6dffc",
-                    "#a78dfb",
-                    "#de8afa",
-
-                ],
-                borderRadius: 5
-            }]
+            labels: [''],
+            datasets: data,
         },
         options: {
             scales: {
@@ -188,6 +193,7 @@
                     },
                     ticks: {
                         color: '#89898f',
+                        display: false,
                     }
                 }
                 ,
@@ -211,15 +217,58 @@
                     display: false,
                 }
             },
-            responsive: true,
+            // responsive: true,
         }
+    };
+    const myChart = new Chart(ctx, config);
+    function generateLegend() {
+        const chartBox = document.querySelector(".content-chart");
+        const div = document.createElement("DIV");
+        div.setAttribute("id", "customLegend");
+        const ul = document.createElement("UL");
 
-    });
+        myChart.legend.legendItems.forEach((dataset, i) => {
+            const text = dataset.text;
+            const datasetIndex = dataset.datasetIndex;
+            const bgColor = dataset.fillStyle;
+            const bColor = dataset.strokeStyle;
+            const fontColor = dataset.fontColor;
+            const li = document.createElement("LI");
+            const span = document.createElement("SPAN");
+            span.style.borderColor = bColor;
+            span.style.backgroundColor = bgColor;
+            const p = document.createElement("P");
+            const textNode = document.createTextNode(text);
+
+            li.onclick = (click) => {
+                const isHidden = !myChart.isDatasetVisible(i);
+                myChart.setDatasetVisibility(i, isHidden);
+                // console.log("click")
+                updateLegend(click);
+            };
+
+            ul.appendChild(li);
+            li.appendChild(span)
+            li.appendChild(p);
+            p.appendChild(textNode);
+        });
+
+        chartBox.appendChild(div);
+        div.appendChild(ul)
+    }
+
+    function updateLegend(click) {
+        const element = click.target.parentNode;
+        element.classList.toggle("fade");
+        myChart.update();
+    }
+
+    generateLegend();
 </script>
 <script>
     document.getElementById("savePDFChart").addEventListener("click", function () {
         console.log("click");
-        var element = document.getElementById('myChart');
+        var element = document.getElementById('content-chart');
 
         // Crea una instancia de html2pdf y pasa el elemento como argumento.
         var opt = {
