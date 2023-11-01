@@ -71,7 +71,14 @@ class Controller:
             if count is not None:
                 dictionary[v.date] = count
         response = {}
-        print(dictionary)
+        # print(dictionary)
+        sorted_dict = dict(
+            sorted(
+                dictionary.items(),
+                key=lambda item: datetime.strptime(item[0], "%d/%m/%Y"),
+            )
+        )
+        # print(dictionary)
         if len(dictionary) == 0:
             response["type_r"] = 0
             response["message"] = "No se encontradon datos"
@@ -80,10 +87,10 @@ class Controller:
             response_graph = self.data_graph_hashtags(start, end, list_data)
             response["type_r"] = 1
             response["message"] = "Si se encontraron datos"
-            response["response"] = dictionary
+            response["response"] = sorted_dict
             response["data_graph"] = response_graph["graph_data"]
         response_return = self.formatter_response(response)
-        print(response_return)
+        # print(response_return)
         return response_return
 
     def filter_users(self, start, end, list_data: list):
@@ -115,17 +122,26 @@ class Controller:
                 user_dates = users_date[v.date]
                 count = Counter(user_dates)
             if count is not None:
-                dictionary[v.date] = count
+                if len(count) > 0:
+                    dictionary[v.date] = count
+
+        sorted_dict = dict(
+            sorted(
+                dictionary.items(),
+                key=lambda item: datetime.strptime(item[0], "%d/%m/%Y"),
+            )
+        )
         response = {}
         if len(dictionary) == 0:
             response["type_r"] = 0
             response["message"] = "No se encontradon datos"
             response["data_graph"] = None
         else:
+            print(dictionary)
             response_graph = self.data_graph_users(start, end, list_data)
             response["type_r"] = 1
             response["message"] = "Si se encontraron datos"
-            response["response"] = dictionary
+            response["response"] = sorted_dict
             response["data_graph"] = response_graph["graph_data"]
         response_return = self.formatter_response(response)
         return response_return
@@ -170,6 +186,12 @@ class Controller:
                 results["neutro"] = count_n
                 dictionary[v.date] = results
         response = {}
+        sorted_dict = dict(
+            sorted(
+                dictionary.items(),
+                key=lambda item: datetime.strptime(item[0], "%d/%m/%Y"),
+            )
+        )
         # print(dictionary.values())
         if len(dictionary.values()) == 0:
             response["type_r"] = 0
@@ -179,7 +201,7 @@ class Controller:
             response_graph = self.data_graph_sentiments(start, end, list_data)
             response["type_r"] = 1
             response["message"] = "Si se encontraron datos"
-            response["response"] = dictionary
+            response["response"] = sorted_dict
             response["data_graph"] = response_graph["graph_data"]
         response_return = self.formatter_response(response)
         return response_return
