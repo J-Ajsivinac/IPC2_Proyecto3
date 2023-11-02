@@ -1,49 +1,52 @@
 <?xml version="1.0" ?>
 <diccionario>
     <sentimientos_positivos>
-        <palabra>bueno</palabra>
-        <palabra>excelente</palabra>
-        <palabra>cool</palabra>
-        <palabra>satisfecho</palabra>
-        <palabra>feliz</palabra>
-        <palabra>contento</palabra>
         <palabra>felicidad</palabra>
+        <palabra>amor</palabra>
+        <palabra>alegria</palabra>
+        <palabra>gratitud</palabra>
         <palabra>exito</palabra>
-        <palabra>alegre</palabra>
-        <palabra>dichoso</palabra>
-        <palabra>radiante</palabra>
+        <palabra>esperanza</palabra>
+        <palabra>amistad</palabra>
+        <palabra>generosidad</palabra>
+        <palabra>paz</palabra>
+        <palabra>sonrisa</palabra>
+        <palabra>admiracion</palabra>
         <palabra>genial</palabra>
-        <palabra>optimista</palabra>
-        <palabra>encantador</palabra>
-        <palabra>glorioso</palabra>
-        <palabra>exultante</palabra>
-        <palabra>euforico</palabra>
-        <palabra>estupendo</palabra>
-        <palabra>jubiloso</palabra>
-        <palabra>triunfante</palabra>
+        <palabra>valentia</palabra>
+        <palabra>bondad</palabra>
+        <palabra>triunfo</palabra>
+        <palabra>euforia</palabra>
+        <palabra>optimismo</palabra>
     </sentimientos_positivos>
     <sentimientos_negativos>
-        <palabra>malo</palabra>
-        <palabra>pesimo</palabra>
-        <palabra>triste</palabra>
-        <palabra>molesto</palabra>
-        <palabra>decepcionado</palabra>
-        <palabra>enojo</palabra>
-        <palabra>desgraciado</palabra>
+        <palabra>tristeza</palabra>
+        <palabra>odio</palabra>
+        <palabra>desesperacion</palabra>
         <palabra>frustracion</palabra>
-        <palabra>desilusion</palabra>
-        <palabra>horrible</palabra>
-        <palabra>desastroso</palabra>
-        <palabra>amargado</palabra>
-        <palabra>pesadumbre</palabra>
-        <palabra>melancolia</palabra>
-        <palabra>abrumado</palabra>
-        <palabra>hostilidad</palabra>
+        <palabra>fracaso</palabra>
+        <palabra>temor</palabra>
+        <palabra>soledad</palabra>
+        <palabra>egoismo</palabra>
+        <palabra>conflicto</palabra>
+        <palabra>lagrimas</palabra>
+        <palabra>envidia</palabra>
+        <palabra>cobardia</palabra>
+        <palabra>maldad</palabra>
         <palabra>derrota</palabra>
-        <palabra>desesperanza</palabra>
-        <palabra>insoportable</palabra>
-        <palabra>agobiante</palabra>
+        <palabra>depresion</palabra>
+        <palabra>pesimismo</palabra>
     </sentimientos_negativos>
-    <rechazar_positivos/>
-    <rechazar_negativos/>
+    <rechazar_positivos>
+        <palabra>derrota</palabra>
+        <palabra>depresion</palabra>
+        <palabra>egoismo</palabra>
+        <palabra>conflicto</palabra>
+        <palabra>lagrimas</palabra>
+        <palabra>god</palabra>
+    </rechazar_positivos>
+    <rechazar_negativos>
+        <palabra>god</palabra>
+        <palabra>paz</palabra>
+    </rechazar_negativos>
 </diccionario>

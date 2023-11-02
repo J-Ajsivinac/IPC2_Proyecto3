@@ -23,16 +23,15 @@ class Read:
         root = ET.fromstring(content)
         first = None
         second = None
-        for name in ["sentimientos_positivos", "sentimientos_negativos"]:
-            element = root.find(name)
-            if element is not None:
-                first = name
-                second = (
-                    "sentimientos_negativos"
-                    if name == "sentimientos_positivos"
-                    else "sentimientos_positivos"
-                )
-                break
+        for child in root:
+            first = child.tag
+            second = (
+                "sentimientos_negativos"
+                if first == "sentimientos_positivos"
+                else "sentimientos_positivos"
+            )
+            break
+        # print(first, second)
         if first is not None:
             db_first = db_root.find(first)
             for element in root.find(first):

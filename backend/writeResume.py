@@ -19,7 +19,7 @@ class Write:
             new_hashtags = [
                 hashtag for hashtag in hashtags if hashtag not in users_date[date].hash
             ]
-            print(new_hashtags)
+            # print(new_hashtags)
             users_date[date].users.update(new_users)
             users_date[date].hash.update(new_hashtags)
             users_date[date].type += 1
@@ -52,10 +52,13 @@ class Write:
         root = ET.Element("CONFIG_RECIBIDA")
         positive = ET.SubElement(root, "PALABRAS_POSITIVAS")
         positive.text = f'{len(list_data["sentimientos_positivos"])}'
-        recha_p = ET.SubElement(root, "PALABRAS_POSITIVAS_RECHAZADA")
+
+        recha_p = ET.SubElement(root, "PALABRAS_POSITIVAS_RECHAZADAS")
         recha_p.text = f'{len(list_data["rechazar_positivos"])}'
+
         negative = ET.SubElement(root, "PALABRAS_NEGATIVAS")
         negative.text = f'{len(list_data["sentimientos_negativos"])}'
+
         recha_n = ET.SubElement(root, "RECHAZAR_NEGATIVOS")
         recha_n.text = f'{len(list_data["rechazar_negativos"])}'
 
