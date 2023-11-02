@@ -395,7 +395,7 @@ form.search-bar {
     display: inline-block;
     height: 20px;
     width: 20px;
-    margin-right: 10px;
+    margin-right: 5px;
     border-radius: 4px;
     transition: all 0.2s ease-in-out;
 }

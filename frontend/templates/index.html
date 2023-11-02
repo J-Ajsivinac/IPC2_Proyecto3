@@ -66,13 +66,13 @@ https://cdn.jsdelivr.net/npm/ace-builds@1.31.0/css/ace.min.css
 {% endif %}
 
 {% if reset is not None %}
-{% if reset %}
+{% if reset and type_r == 1 %}
 <script>
     Swal.fire(
         {
             title: 'Opreación Exisota',
             color: "#fff",
-            html: 'Se Inicializo el sistema correctamente',
+            html: '{{ message|escapejs }}',
             imageUrl: "{% static 'img/succes.svg' %}",
             imageWidth: 120,
             imageHeight: 120,
@@ -90,7 +90,7 @@ https://cdn.jsdelivr.net/npm/ace-builds@1.31.0/css/ace.min.css
         {
             title: 'Error',
             color: "#fff",
-            html: 'No se logro inicializar el sistema correctamente',
+            html: '{{ message|escapejs }}',
             imageUrl: "{% static 'img/error.svg' %}",
             imageWidth: 120,
             imageHeight: 120,

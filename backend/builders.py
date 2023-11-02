@@ -11,9 +11,15 @@ class MainBackend:
         self.load_initial_data()
 
     def reset_data(self):
-        self.dict_conf = self.build.reset()
+        resp, self.dict_conf = self.build.reset()
+        if not resp:
+            if len(self.messages) == 0:
+                return {"type_r": 0, "msg": "No hay datos para reiniciar"}
+            self.messages.clear()
+            self.read.restet_db()
         self.messages.clear()
         self.read.restet_db()
+        return {"type_r": 1, "msg": "Se ha reiniciado la base de datos"}
 
     def load_initial_data(self):
         self.read.load_initial_data(self.dict_conf)
@@ -26,12 +32,36 @@ class MainBackend:
         return self.read.load_msg(xml_data, self.dict_conf, self.messages)
 
     def return_hashtags(self, start, end):
+        if len(self.messages) == 0:
+            response = {
+                "message": "No hay mensajes cargados en el sistema",
+                "data": "",
+                "type_r": 0,
+                "data_graph": "",
+            }
+            return response
         return self.ctrl.filter_hashtag(start, end, self.messages)
 
     def return_users(self, start, end):
+        if len(self.messages) == 0:
+            response = {
+                "message": "No hay mensajes cargados en el sistema",
+                "data": "",
+                "type_r": 0,
+                "data_graph": "",
+            }
+            return response
         return self.ctrl.filter_users(start, end, self.messages)
 
     def return_sentiments(self, start, end):
+        if len(self.messages) == 0:
+            response = {
+                "message": "No hay mensajes cargados en el sistema",
+                "data": "",
+                "type_r": 2,
+                "data_graph": "",
+            }
+            return response
         return self.ctrl.filter_sentiments(start, end, self.messages)
 
     def return_graph_s(self, start, end):
@@ -62,6 +92,8 @@ class Config:
         }
 
     def reset(self):
+        if all(not value for value in self.config.values()):
+            return False, self.config
         self.config.clear()
         self.config = {}
         self.config = {
@@ -70,7 +102,7 @@ class Config:
             "rechazar_positivos": set(),
             "rechazar_negativos": set(),
         }
-        return self.config
+        return True, self.config
 
     def verify_sent(self, current_sent, value):
         search_in = (

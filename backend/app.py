@@ -59,8 +59,8 @@ def get_sentiments():
 
 @app.route("/limpiarDatos")
 def restet():
-    origin_data.reset_data()
-    return {"mensaje": "Sistema inicializado"}
+    response = origin_data.reset_data()
+    return jsonify(response)
 
 
 @app.route("/SalidaMensajes")

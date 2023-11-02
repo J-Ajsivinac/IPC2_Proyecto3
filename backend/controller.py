@@ -69,7 +69,8 @@ class Controller:
                 hash_dates = hashtags_dates[v.date]
                 count = Counter(hash_dates)
             if count is not None:
-                dictionary[v.date] = count
+                if len(count) > 0:
+                    dictionary[v.date] = count
         response = {}
         # print(dictionary)
         sorted_dict = dict(
@@ -181,9 +182,12 @@ class Controller:
                             count_neg += 1
                         else:
                             count_n += 1
-                results["positivo"] = count_posit
-                results["negativo"] = count_neg
-                results["neutro"] = count_n
+                if count_posit > 0:
+                    results["Sentimiento Positivo"] = count_posit
+                if count_neg > 0:
+                    results["Sentimiento Negativo"] = count_neg
+                if count_n > 0:
+                    results["Sentimiento Neutro"] = count_n
                 dictionary[v.date] = results
         response = {}
         sorted_dict = dict(
@@ -233,10 +237,12 @@ class Controller:
                             count_neg += 1
                         elif v.type == "neutro":
                             count_n += 1
-            results["positivo"] = count_posit
-            results["negativo"] = count_neg
-            # print(count_n)
-            results["neutro"] = count_n
+            if count_posit > 0:
+                results["positivo"] = count_posit
+            if count_neg > 0:
+                results["negativo"] = count_neg
+            if count_n > 0:
+                results["neutro"] = count_n
             response = {}
             response["graph_data"] = results
         return response

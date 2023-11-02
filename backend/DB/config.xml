@@ -17,7 +17,6 @@
         <palabra>bondad</palabra>
         <palabra>triunfo</palabra>
         <palabra>euforia</palabra>
-        <palabra>optimismo</palabra>
     </sentimientos_positivos>
     <sentimientos_negativos>
         <palabra>tristeza</palabra>
@@ -35,18 +34,10 @@
         <palabra>maldad</palabra>
         <palabra>derrota</palabra>
         <palabra>depresion</palabra>
-        <palabra>pesimismo</palabra>
     </sentimientos_negativos>
     <rechazar_positivos>
         <palabra>derrota</palabra>
         <palabra>depresion</palabra>
-        <palabra>egoismo</palabra>
-        <palabra>conflicto</palabra>
-        <palabra>lagrimas</palabra>
-        <palabra>god</palabra>
     </rechazar_positivos>
-    <rechazar_negativos>
-        <palabra>god</palabra>
-        <palabra>paz</palabra>
-    </rechazar_negativos>
+    <rechazar_negativos/>
 </diccionario>

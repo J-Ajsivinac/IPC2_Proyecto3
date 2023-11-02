@@ -16,18 +16,30 @@ def index(request):
             try:
                 api_url = "http://127.0.0.1:3020/limpiarDatos"
                 response = requests.get(api_url, timeout=100)
+                response_api = response.json()
                 exito = response.status_code == 200
-                print(exito)
             except Exception as _:
                 exito = False
-                print(exito, "---")
-            return render(
-                request,
-                "index.html",
-                {
-                    "reset": exito,
-                },
-            )
+            if exito:
+                return render(
+                    request,
+                    "index.html",
+                    {
+                        "reset": exito,
+                        "type_r": response_api["type_r"],
+                        "message": response_api["msg"],
+                    },
+                )
+            else:
+                return render(
+                    request,
+                    "index.html",
+                    {
+                        "reset": exito,
+                        "type_r": 0,
+                        "message": "Error al conectar con el servidor",
+                    },
+                )
         exito = request.GET.get("exito", None)
         exito = exito == "True" if exito is not None else None
         return render(request, "index.html", {"exito": exito, "data": ""})
@@ -39,11 +51,9 @@ def index(request):
             try:
                 archivo = request.FILES["file-1"]
                 contenido = archivo.read()
-                # print(contenido)
                 api_url = "http://127.0.0.1:3020/grabarConfiguracion"
                 response = requests.post(api_url, data=contenido, timeout=300)
                 response_api = response.json()
-                # print(response_api["data"])
                 exito = response.status_code == 200
                 if exito:
                     current_directory = os.path.dirname(__file__)
@@ -87,7 +97,6 @@ def index(request):
         # cargar mensajes para analizar
         elif "file-2" in request.FILES:
             exito = None
-            # print("entro en config")
             try:
                 archivo = request.FILES["file-2"]
                 contenido = archivo.read()
@@ -132,7 +141,6 @@ def index(request):
                         "data": "",
                     },
                 )
-        # return redirect(f"{reverse('index')}?exito={exito}")
     exito = request.GET.get("exito", None)
     exito = exito == "True" if exito is not None else None
     return render(request, "index.html", {"exito": exito})
@@ -145,12 +153,18 @@ def search(request):
         response = None
         if "rangeDate" in request.POST:
             search_by = request.POST["searchBy"]
-
             range_date = request.POST["rangeDate"]
             range_date = range_date.split("-")
-            if len(range_date) != 2:
-                # print(range_date, "error")
-                return redirect(reverse("search"))
+            if len(range_date) != 2 or len(range_date) == 0:
+                return render(
+                    request,
+                    "search.html",
+                    {
+                        "data": None,
+                        "type_r": 2,
+                        "message": "No se selecciono un rango de fechas adecuado",
+                    },
+                )
             start = range_date[0].strip()
             end = range_date[1].strip()
             api_url = ""
@@ -168,11 +182,9 @@ def search(request):
                     api_url, headers=headers, data=data_json, timeout=1000
                 )
                 response_api = response.json()
-                # graph_data = json.dumps(response_api["data_graph"])
                 graph_data = {"data_graph": response_api["data_graph"]}
                 graph_data = json.dumps(graph_data)
                 if response.status_code == 200:
-                    # print(data)
                     return render(
                         request,
                         "search.html",
@@ -180,35 +192,40 @@ def search(request):
                             "data": response_api["data"],
                             "type_r": response_api["type_r"],
                             "graph_data": graph_data,
+                            "message": response_api["message"],
                         },
                     )
                 else:
-                    # print("error")
                     return render(
                         request,
                         "search.html",
-                        {"data": "None", "type_r": 0},
+                        {
+                            "data": "None",
+                            "type_r": 2,
+                            "message": "Error al conectar con el sevidor",
+                        },
                     )
             except Exception as _:
                 return render(
                     request,
                     "search.html",
-                    {"data": "None", "type_r": 0},
+                    {
+                        "data": "None",
+                        "type_r": 2,
+                        "message": "Error al conectar con el servidor",
+                    },
                 )
         else:
-            # print("error")
             return render(
                 request,
                 "search.html",
-                {"data": None, "type_r": 2},
+                {
+                    "data": None,
+                    "type_r": 2,
+                    "message": "Ocurrio un error con las fechas <br> vuelva a intetarlo",
+                },
             )
 
 
 def help_p(request):
     return render(request, "help.html")
-
-
-# def test(request):
-#     graph_data = {"data_graph": {"bienvenidaUSAC": "4", "saludoUSAC": "2"}}
-#     print(json.dumps(graph_data))
-#     return render(request, "graph.html", {"graph_data": json.dumps(graph_data)})
