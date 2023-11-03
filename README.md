@@ -1,7 +1,7 @@
 <h1 align="center">Proyecto 3</h1>
-<!-- <p align="center">
-    <a href="#"><img src="https://i.imgur.com/iLNDwx7.png"></a>
-</p> -->
+<p align="center">
+    <a href="#"><img src="https://i.imgur.com/pAl0s62.png"></a>
+</p>
 <p align="center">Programa de analisis de sentimientos sobre mensajes en redes sociales</p>
 
 <div align="center">

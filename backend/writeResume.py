@@ -36,7 +36,7 @@ class Write:
             tiempo = ET.SubElement(root, "TIEMPO")
             date = ET.SubElement(tiempo, "FECHA")
             date.text = f"{value.date}"
-            msj_r = ET.SubElement(tiempo, "MSJ_RECIBIDO")
+            msj_r = ET.SubElement(tiempo, "MSJ_RECIBIDOS")
             msj_r.text = f"{value.type}"
             usr_m = ET.SubElement(tiempo, "USR_MENCIONADOS")
             usr_m.text = f"{len(value.users)}"
@@ -53,13 +53,13 @@ class Write:
         positive = ET.SubElement(root, "PALABRAS_POSITIVAS")
         positive.text = f'{len(list_data["sentimientos_positivos"])}'
 
-        recha_p = ET.SubElement(root, "PALABRAS_POSITIVAS_RECHAZADAS")
+        recha_p = ET.SubElement(root, "PALABRAS_POSITIVAS_RECHAZADA")
         recha_p.text = f'{len(list_data["rechazar_positivos"])}'
 
         negative = ET.SubElement(root, "PALABRAS_NEGATIVAS")
         negative.text = f'{len(list_data["sentimientos_negativos"])}'
 
-        recha_n = ET.SubElement(root, "RECHAZAR_NEGATIVOS")
+        recha_n = ET.SubElement(root, "PALABRAS_NEGATIVAS_RECHAZADA")
         recha_n.text = f'{len(list_data["rechazar_negativos"])}'
 
         xmlstr = minidom.parseString(ET.tostring(root)).toprettyxml(indent="    ")

@@ -67,7 +67,7 @@ class Read:
                     current[response].add(text)
 
         write = Write()
-        xmlstr1 = write.write_resume_confif(root, current)
+        xmlstr1 = write.write_resume_confif(root, conf)
 
         xmlstr = minidom.parseString(ET.tostring(db_root)).toprettyxml(indent="    ")
 
@@ -231,7 +231,7 @@ class Read:
             with open(db_root_file, "w+", encoding="utf-8") as f:
                 f.write(xmlstr)
         # print(search_date, search_users, search_hastag)
-        xml1 = read.write_resume(temp)
+        xml1 = read.write_resume(list_msg)
         return xml1
 
     def verify_dup(self, value, list_w: list):

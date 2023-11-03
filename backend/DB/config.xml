@@ -1,43 +1,142 @@
 <?xml version="1.0" ?>
 <diccionario>
     <sentimientos_positivos>
-        <palabra>felicidad</palabra>
         <palabra>amor</palabra>
+        <palabra>felicidad</palabra>
         <palabra>alegria</palabra>
-        <palabra>gratitud</palabra>
-        <palabra>exito</palabra>
-        <palabra>esperanza</palabra>
-        <palabra>amistad</palabra>
-        <palabra>generosidad</palabra>
         <palabra>paz</palabra>
+        <palabra>gratitud</palabra>
+        <palabra>esperanza</palabra>
         <palabra>sonrisa</palabra>
+        <palabra>amistad</palabra>
+        <palabra>exito</palabra>
+        <palabra>inspiracion</palabra>
+        <palabra>aventura</palabra>
+        <palabra>abrazo</palabra>
+        <palabra>generosidad</palabra>
+        <palabra>entusiasmo</palabra>
+        <palabra>creatividad</palabra>
+        <palabra>libertad</palabra>
+        <palabra>belleza</palabra>
+        <palabra>gratificacion</palabra>
         <palabra>admiracion</palabra>
-        <palabra>genial</palabra>
+        <palabra>serenidad</palabra>
+        <palabra>logro</palabra>
+        <palabra>pasion</palabra>
+        <palabra>prosperidad</palabra>
+        <palabra>plenitud</palabra>
         <palabra>valentia</palabra>
-        <palabra>bondad</palabra>
+        <palabra>solidaridad</palabra>
         <palabra>triunfo</palabra>
-        <palabra>euforia</palabra>
+        <palabra>aprecio</palabra>
+        <palabra>amabilidad</palabra>
+        <palabra>optimismo</palabra>
+        <palabra>dulzura</palabra>
+        <palabra>extasis</palabra>
+        <palabra>respeto</palabra>
+        <palabra>armonia</palabra>
+        <palabra>amor propio</palabra>
+        <palabra>risueno</palabra>
+        <palabra>aplauso</palabra>
+        <palabra>celebracion</palabra>
+        <palabra>festejo</palabra>
+        <palabra>capacidad</palabra>
+        <palabra>brillo</palabra>
+        <palabra>altruismo</palabra>
+        <palabra>carino</palabra>
+        <palabra>agradecimiento</palabra>
+        <palabra>comprension</palabra>
+        <palabra>cooperacion</palabra>
+        <palabra>empatia</palabra>
+        <palabra>estimulo</palabra>
+        <palabra>satisfaccion</palabra>
+        <palabra>valiente</palabra>
+        <palabra>independencia</palabra>
+        <palabra>honestidad</palabra>
+        <palabra>companerismo</palabra>
+        <palabra>resiliencia</palabra>
+        <palabra>paciencia</palabra>
+        <palabra>sabiduria</palabra>
+        <palabra>abundancia</palabra>
+        <palabra>empoderamiento</palabra>
+        <palabra>estimulante</palabra>
+        <palabra>brillantez</palabra>
+        <palabra>vibrante</palabra>
+        <palabra>incondicional</palabra>
+        <palabra>vivir</palabra>
+        <palabra>inspirador</palabra>
+        <palabra>comunidad</palabra>
+        <palabra>compartir</palabra>
+        <palabra>triunfador</palabra>
+        <palabra>gracia</palabra>
     </sentimientos_positivos>
     <sentimientos_negativos>
         <palabra>tristeza</palabra>
-        <palabra>odio</palabra>
+        <palabra>enfado</palabra>
+        <palabra>dolor</palabra>
         <palabra>desesperacion</palabra>
-        <palabra>frustracion</palabra>
-        <palabra>fracaso</palabra>
-        <palabra>temor</palabra>
         <palabra>soledad</palabra>
-        <palabra>egoismo</palabra>
-        <palabra>conflicto</palabra>
-        <palabra>lagrimas</palabra>
+        <palabra>miedo</palabra>
+        <palabra>odio</palabra>
+        <palabra>rencor</palabra>
+        <palabra>angustia</palabra>
+        <palabra>depresion</palabra>
+        <palabra>desesperanza</palabra>
+        <palabra>agresion</palabra>
         <palabra>envidia</palabra>
-        <palabra>cobardia</palabra>
-        <palabra>maldad</palabra>
-        <palabra>derrota</palabra>
-        <palabra>depresion</palabra>
+        <palabra>celos</palabra>
+        <palabra>amargura</palabra>
     </sentimientos_negativos>
-    <rechazar_positivos>
+    <rechazar_positivos/>
+    <rechazar_negativos>
+        <palabra>brillo</palabra>
+        <palabra>preocupacion</palabra>
+        <palabra>ansiedad</palabra>
+        <palabra>culpa</palabra>
+        <palabra>remordimiento</palabra>
+        <palabra>desprecio</palabra>
+        <palabra>desilusion</palabra>
+        <palabra>desanimo</palabra>
+        <palabra>abandono</palabra>
+        <palabra>rechazo</palabra>
+        <palabra>traicion</palabra>
+        <palabra>fracaso</palabra>
+        <palabra>desastre</palabra>
+        <palabra>pesimismo</palabra>
+        <palabra>inseguridad</palabra>
+        <palabra>desconfianza</palabra>
+        <palabra>lamentacion</palabra>
+        <palabra>ruptura</palabra>
+        <palabra>desgaste</palabra>
+        <palabra>descontento</palabra>
+        <palabra>agonia</palabra>
+        <palabra>sufrimiento</palabra>
+        <palabra>lagrimas</palabra>
+        <palabra>desengano</palabra>
+        <palabra>impotencia</palabra>
+        <palabra>desgarrador</palabra>
+        <palabra>desolacion</palabra>
+        <palabra>pesadumbre</palabra>
+        <palabra>luto</palabra>
+        <palabra>agobio</palabra>
+        <palabra>injusticia</palabra>
+        <palabra>rabia</palabra>
+        <palabra>hostilidad</palabra>
+        <palabra>estres</palabra>
+        <palabra>desorden</palabra>
+        <palabra>dificultad</palabra>
+        <palabra>abuso</palabra>
+        <palabra>desamparo</palabra>
+        <palabra>desempleo</palabra>
+        <palabra>insatisfaccion</palabra>
+        <palabra>crisis</palabra>
+        <palabra>desaliento</palabra>
+        <palabra>culpabilidad</palabra>
+        <palabra>enfermedad</palabra>
         <palabra>derrota</palabra>
-        <palabra>depresion</palabra>
-    </rechazar_positivos>
-    <rechazar_negativos/>
+        <palabra>engano</palabra>
+        <palabra>ruina</palabra>
+        <palabra>perdida</palabra>
+        <palabra>desventura</palabra>
+    </rechazar_negativos>
 </diccionario>

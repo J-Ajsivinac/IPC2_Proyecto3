@@ -23,7 +23,7 @@ class Controller:
             type_m = "negativo"
         elif count_pos > count_neg:
             type_m = "positivo"
-        else:
+        elif count_pos == count_neg:
             type_m = "neutro"
         return type_m
 

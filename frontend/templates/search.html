@@ -66,7 +66,7 @@
                     <p>Buscar Por</p>
                     <select name="searchBy">
                         <option value="hashtags" selected>Hastags</option>
-                        <option value="mentions">Mensiones</option>
+                        <option value="mentions">Menciones</option>
                         <option value="sentiments">Sentimientos</option>
                     </select>
                 </div>
@@ -280,21 +280,21 @@
             const textNode = document.createTextNode(text);
 
             li.onclick = (click) => {
-                // Obtén el conjunto de datos
+                // conjunto de datos
                 let dataset = myChart.data.datasets[i];
 
-                // Guarda los colores originales en caso de que no existan
+                // Guarda los colores originales 
                 if (!dataset.originalColors) {
                     dataset.originalColors = dataset.backgroundColor;
                 }
 
-                // Si el conjunto de datos está resaltado, restablece los colores
+                // restablece los colores
                 if (dataset.highlighted) {
                     dataset.backgroundColor = dataset.originalColors;
                     dataset.highlighted = false;
                 } else {
                     // Si no está resaltado, cambia los colores a los de resaltado
-                    dataset.backgroundColor = '#fffdc7'; // Cambia 'color_de_resaltado' por el color que quieras
+                    dataset.backgroundColor = '#fffdc7';
                     dataset.highlighted = true;
                 }
                 updateLegend(click);

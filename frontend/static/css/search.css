@@ -251,7 +251,7 @@ form.search-bar {
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    border-bottom: 1px solid #444444;
+    border-bottom: 2px solid #37373a;
 }
 
 .content-return .content-list .content-graph-results {
@@ -332,7 +332,7 @@ form.search-bar {
 }
 
 .content-button-d button:hover {
-    background-color: #373D4D;
+    background-color: #41444A;
     color: white;
 }
 

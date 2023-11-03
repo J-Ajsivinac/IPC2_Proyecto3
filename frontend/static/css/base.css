@@ -135,7 +135,7 @@ body {
 
 .sidebar ul li a.current {
     color: #fff;
-    background-color: #3657ef;
+    background-color: #3369f4;
 }
 
 .sidebar.active ul li a {
@@ -155,7 +155,7 @@ body {
 
 .sidebar ul li a.current:hover {
     color: #fff;
-    background-color: #2F4CCC;
+    background-color: #2c58c7;
 }
 
 .sidebar ul li i {
@@ -295,7 +295,7 @@ main.home_content section.content-init .card-init {
     background-color: #131416;
     border-radius: 10px;
     font-size: 1.7rem;
-    color: white;
+    color: #d0d0d0;
 }
 
 .content-i-form .form {
@@ -349,13 +349,13 @@ main.home_content section.content-init .card-init {
 }
 
 .content-i-form .form form button.btn-init {
-    background-color: #fe9378;
+    background-color: #ffba8e;
     color: #302821;
     font-weight: 500;
 }
 
 .content-i-form .form form button.btn-init:hover {
-    background-color: #d67b64;
+    background-color: #e8a073;
     color: #302821;
     font-weight: 500;
 }
@@ -453,6 +453,7 @@ main.home_content section.content-init .card-init-restart {
     flex-direction: row;
     /* border: 1px solid #ccc; */
     margin-top: 10px;
+    padding-bottom: 7px;
     /* background-color: #292933; */
     height: 46vh;
 }
@@ -468,6 +469,7 @@ main.home_content section.content-init .card-init-restart {
 }
 
 .content-edit i {
+    color: #d0d0d0;
     font-size: 2.4rem;
 }
 
