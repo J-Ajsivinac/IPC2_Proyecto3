@@ -196,4 +196,4 @@ Se muestra cuando se encontró alguna inconsistencia, y sirve para indicar que t
 
 ## 📖 Documentación
 Para comprender de mejor manera el funcionamiento del sistema puede, 
-<a href="https://github.com/J-Ajsivinac/IPC2_Proyecto2_202200135/blob/main/Doc/Documentacion.pdf">Ver la documentación</a>
+<a href="https://github.com/J-Ajsivinac/IPC2_Proyecto3_202200135/blob/main/Doc/Documentacion.pdf">Ver la documentación</a>
