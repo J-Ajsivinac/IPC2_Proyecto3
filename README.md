@@ -128,11 +128,7 @@ En este apartado se tendrán los botones para cargar archivos de entrada (config
 > 
 > Primero se debe elegir el archivo que contenga los mensajes ha analizar, dando click en seleccionar archivo, se abrirá una ventana para poder abrir el archivo correspondiente, para luego poder enviar el archivo, una vez enviado, se le mostrará un mensaje emergente indicando el resultado de la acción.
 
-**Nota**: Existen archivos de prueba en la carpeta `input`
-
-> **Generar Archivo**
->
-> Al presionar este botón se abrira una ventana para poder elegir donde se guardará el archivo de salida, en dicha ventana también se podra cambiar el nombre del archivo de salida.
+**Nota**: Existen archivos de prueba en la carpeta `input`, Se generarán archivos de resumenes, en una carpeta que se crea llamada resumenes.
 
 > **Inicializar Sistema**
 >
@@ -166,6 +162,7 @@ Finalmente para completar la busqueda, se presiona Buscar, mostrando los resulta
     <img src="screenshots/cap5.png">
 </p>
 
+Los resultados obtenidos, se podrán guardar en archivos `PDF`, presionando descargar
 
 ### Ayuda
 
