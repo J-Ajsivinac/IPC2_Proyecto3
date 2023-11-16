@@ -1,4 +1,4 @@
 cd frontend/
 
 # Iniciar el servidor Django (frontend)
-python manage.py runserver
+python3.11 manage.py runserver

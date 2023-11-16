@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<diccionario>
+   <sentimientos_positivos>
+      <palabra>solidaridad</palabra>
+      <palabra>sonriente</palabra>
+      <palabra>sonrisa</palabra>
+      <palabra>triunfador</palabra>
+      <palabra>triunfante</palabra>
+   </sentimientos_positivos>
+   <sentimientos_negativos>
+   <palabra>rencor</palabra>
+      <palabra>roto</palabra>
+      <palabra>sufrimiento</palabra>
+      <palabra>sufrir</palabra>
+      <palabra>triste</palabra>
+   </sentimientos_negativos>
+</diccionario>

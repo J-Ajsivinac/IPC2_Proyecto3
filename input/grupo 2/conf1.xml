@@ -1,0 +1,38 @@
+<?xml version="1.0"?>
+<diccionario>
+    <sentimientos_positivos>
+        <palabra> Felicidad </palabra>
+        <palabra> Amor </palabra>
+        <palabra> Alegría </palabra>
+        <palabra> Gratitud </palabra>
+        <palabra> Éxito </palabra>
+        <palabra> Esperanza </palabra>
+        <palabra> Amistad </palabra>
+        <palabra> Generosidad </palabra>
+        <palabra> Paz </palabra>
+        <palabra> Sonrisa </palabra>
+        <palabra> Admiración </palabra>
+        <palabra> genial </palabra>
+        <palabra> Valentía </palabra>
+        <palabra> Bondad </palabra>
+        <palabra> Triunfo </palabra>
+        <palabra> Euforia </palabra>
+    </sentimientos_positivos>
+    <sentimientos_negativos>
+        <palabra>Tristeza</palabra>
+        <palabra>Odio</palabra>
+        <palabra>Desesperación</palabra>
+        <palabra>Frustración</palabra>
+        <palabra>Fracaso</palabra>
+        <palabra>Temor</palabra>
+        <palabra>Soledad</palabra>
+        <palabra>Egoísmo</palabra>
+        <palabra>Conflicto</palabra>
+        <palabra>Lágrimas</palabra>
+        <palabra>Envidia</palabra>
+        <palabra>Cobardía</palabra>
+        <palabra>Maldad</palabra>
+        <palabra>Derrota</palabra>
+        <palabra>Depresión</palabra>
+    </sentimientos_negativos>
+</diccionario>
